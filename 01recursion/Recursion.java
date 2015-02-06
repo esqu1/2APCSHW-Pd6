@@ -41,6 +41,9 @@ public class Recursion implements hw1{
     }
 
     public double sqrt(double n){
+	if(n < 0){
+	    throw new IllegalArgumentException();
+	}
 	return sqrtHelp(n, n / 2);
     }
 }
