@@ -32,9 +32,9 @@ public class Recursion{
     }
 
     public double sqrtHelp(double n, double guess){
-	double EPSILON = 0.000001;
+	double EPSILON = 0.000000000000001;
 	double newguess = (n / guess + guess) / 2;
-	if(guess - newguess <= EPSILON){
+	if(Math.abs(guess - newguess) <= EPSILON){
 	    return newguess;
 	}
 	return sqrtHelp(n, newguess);
@@ -43,6 +43,9 @@ public class Recursion{
     public double sqrt(double n){
 	if(n < 0){
 	    throw new IllegalArgumentException();
+	}
+	if(n == 0){
+	    return 0;
 	}
 	return sqrtHelp(n, n / 2);
     }
