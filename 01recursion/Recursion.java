@@ -33,11 +33,10 @@ public class Recursion{
 
     public double sqrtHelp(double n, double guess){
 	double EPSILON = 0.000000000000001;
-	double newguess = (n / guess + guess) / 2;
-	if(Math.abs(guess - newguess) <= EPSILON){
-	    return newguess;
+	if(Math.abs(guess * guess - n) <= EPSILON){
+	    return guess;
 	}
-	return sqrtHelp(n, newguess);
+	return sqrtHelp(n, (n / guess + guess) / 2);
     }
 
     public double sqrt(double n){
