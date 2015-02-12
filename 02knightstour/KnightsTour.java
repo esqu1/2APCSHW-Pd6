@@ -63,7 +63,7 @@ public class KnightsTour{
     
     public boolean solve(int x,int y,int currentMoveNumber){
 	//System.out.println(this);
-	//wait(5);
+	//wait(1);
 	if(currentMoveNumber == board.length * board[0].length + 1){
 	    return true;
 	}
