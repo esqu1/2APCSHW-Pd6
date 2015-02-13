@@ -55,9 +55,13 @@ public class KnightsTour{
 	}
     }
 
+    public boolean solve(){
+	return solve(0,0);
+    }
+
     
-    public void solve(int startx, int starty){
-	solve(startx,starty,1);
+    public boolean solve(int startx, int starty){
+	return solve(startx,starty,1);
     }
 
     
