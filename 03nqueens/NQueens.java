@@ -1,8 +1,13 @@
 public class NQueens{
-    private int[][] board;
+    private char[][] board;
     
     public NQueens(int size){
-	board = new int[size][size];
+	board = new char[size][size];
+	for(int i = 0; i < board.length; i++){
+	    for(int j = 0; j < board[0].length; j++){
+		board[i][j] = '.';
+	    }
+	}
     }
 
     public String name(){
@@ -38,7 +43,7 @@ public class NQueens{
     }
 
     public boolean solve(int x){
-	board[0][x] = 1;
+	board[0][x] = '@';
 	boolean val = false;
 	for(int i = 0; i < board[0].length; i++){
 	    val = val || solveHelp(x,1,i);
@@ -46,7 +51,7 @@ public class NQueens{
 	if(val){
 	    return true;
 	}
-	board[0][x] = 0;
+	board[0][x] = '.';
 	return false;
     }
 
@@ -66,7 +71,7 @@ public class NQueens{
 		//System.out.println(board[i][j]);
 		//System.out.println(i + " " + j);
 		//System.out.println(row + "?" + col);
-		if( !(row == i && row == j) && board[i][j] == 1 && ((Math.abs(row - i) == Math.abs(col - j)) || row == i || col == j) ){
+		if( !(row == i && row == j) && board[i][j] == '@' && ((Math.abs(row - i) == Math.abs(col - j)) || row == i || col == j) ){
 		    //System.out.println("meh");
 		    valid = false;
 		    break;
@@ -78,7 +83,7 @@ public class NQueens{
 	    return false;
 	}
 
-	board[row][col] = 1;
+	board[row][col] = '@';
 	valid = false;
 	for(int i = 0; i < board[0].length; i++){
 	    valid = valid || solveHelp(x,row+1,i);
@@ -86,7 +91,7 @@ public class NQueens{
 	if(valid){
 	    return true;
 	}
-	board[row][col] = 0;
+	board[row][col] = '.';
 	return false;
     }
 		
