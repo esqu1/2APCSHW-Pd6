@@ -19,7 +19,7 @@ public class KnightsTour{
     }
 
     public String name(){
-	return "Lin,Brandon";
+	return "lin.brandon";
     }
     
     public void wait(int millis){

@@ -11,7 +11,7 @@ public class NQueens{
     }
 
     public String name(){
-	return "Lin,Brandon";
+	return "lin.brandon";
     }
 
     public String toString(){
