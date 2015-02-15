@@ -25,14 +25,6 @@ public class NQueens{
 	return out;
     }
 
-    public void wait(int millis){
-	try {
-	    Thread.sleep(millis);
-	}
-	catch (InterruptedException e) {
-	}
-    }
-
     public boolean solve(){
 	for(int i = 0; i < board.length; i++){
 	    if(solve(i)){
@@ -56,35 +48,18 @@ public class NQueens{
     }
 
     public boolean solveHelp(int x, int row, int col){
-	//System.out.println(row + "." + col);
-	//System.out.println(this);
-	//wait(20);
-	boolean valid = true;
 	if(row == board.length){
 	    return true;
 	}
-	if(col == board[0].length){
-	    return false;
-	}
 	for(int i = 0; i < board.length; i++){
 	    for(int j = 0; j < board[0].length; j++){
-		//System.out.println(board[i][j]);
-		//System.out.println(i + " " + j);
-		//System.out.println(row + "?" + col);
 		if( !(row == i && row == j) && board[i][j] == '@' && ((Math.abs(row - i) == Math.abs(col - j)) || row == i || col == j) ){
-		    //System.out.println("meh");
-		    valid = false;
-		    break;
+		    return false;
 		}
 	    }
 	}
-
-	if(!valid){
-	    return false;
-	}
-
 	board[row][col] = '@';
-	valid = false;
+	boolean valid = false;
 	for(int i = 0; i < board[0].length; i++){
 	    valid = valid || solveHelp(x,row+1,i);
 	}
