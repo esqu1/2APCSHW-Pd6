@@ -95,7 +95,7 @@ public class KnightsTour{
 	}
 	KnightsTour k = new KnightsTour(size);
 	//System.out.println(k);
-	if(k.solve(0,0,1)){
+	if(k.solve(3,3)){
 	    System.out.println(k);
 	}else{
 	    System.out.println("no solution");
