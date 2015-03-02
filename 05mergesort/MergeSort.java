@@ -30,7 +30,7 @@ public class MergeSort{
 	return mh(a,b,0,0,0,result);
     }
 
-    public static int[] mergeSort(int[] a){
+    public static int[] mergeS(int[] a){
 	if(a.length == 1){
 	    return a;
 	}
@@ -42,9 +42,16 @@ public class MergeSort{
 	for(int i = a.length / 2; i < a.length; i++){
 	    half2[i - a.length / 2] = a[i];
 	}
-	return merge(mergeSort(half1), mergeSort(half2));
+	return merge(mergeS(half1), mergeS(half2));
     }
 
+    public static void mergeSort(int[] a){
+	int[] b = mergeSort(a);
+	for(int i = 0; i < a.length; i++){
+	    a[i] = b[i];
+	}
+    }
+    
     public static void main(String[] args){
 	int[] test = new int[200000];
 	Random r = new Random();

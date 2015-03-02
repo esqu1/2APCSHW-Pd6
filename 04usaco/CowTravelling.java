@@ -5,6 +5,7 @@ public class CowTravelling{
     private static char[][] pasture;
     private static int time;
     private static int x1,y1,x2,y2;
+    private static int[][] dp;
     
 
     public static int find(int a, int b, int ttime){
@@ -28,6 +29,7 @@ public class CowTravelling{
 	Scanner s = new Scanner(new BufferedReader(new FileReader("ctravel.in")));
 	PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("ctravel.out")));
 	pasture = new char[Integer.parseInt(s.next())][Integer.parseInt(s.next())];
+	dp = new int[pasture.length][pasture[0].length];
 	time = Integer.parseInt(s.next());
 	for(int i = 0; i < pasture.length; i++){
 	    String t = s.next();
