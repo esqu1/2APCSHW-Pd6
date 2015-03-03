@@ -5,23 +5,28 @@ public class CowTravelling{
     private static char[][] pasture;
     private static int time;
     private static int x1,y1,x2,y2;
-    private static int[][] dp;
+    private static int[][][] dp;
     
 
     public static int find(int a, int b, int ttime){
 	if(a < 0 || a >= pasture.length || b < 0 || b >= pasture[0].length){
 	    return 0;
 	}
-	if(time == ttime && (a != x2 || b != y2)){
-	    return 0;
-	}
 	if(time == ttime && a == x2 && b == y2){
 	    return 1;
 	}
+	if(time == ttime && (a != x2 || b != y2)){
+	    return 0;
+	}
+	if(dp[a][b][ttime] != 0){
+	    return dp[a][b][ttime];
+	}
+
 	if(pasture[a][b] == '*'){
 	    return 0;
 	}
-	return find(a+1,b,ttime+1) + find(a-1,b,ttime+1) + find(a,b+1,ttime+1) + find(a,b-1,ttime+1);
+	dp[a][b][ttime] = find(a+1,b,ttime+1) + find(a-1,b,ttime+1) + find(a,b+1,ttime+1) + find(a,b-1,ttime+1);
+	return dp[a][b][ttime];
 	
     }
 
@@ -29,8 +34,10 @@ public class CowTravelling{
 	Scanner s = new Scanner(new BufferedReader(new FileReader("ctravel.in")));
 	PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("ctravel.out")));
 	pasture = new char[Integer.parseInt(s.next())][Integer.parseInt(s.next())];
-	dp = new int[pasture.length][pasture[0].length];
 	time = Integer.parseInt(s.next());
+	dp = new int[pasture.length][pasture[0].length][time];
+	System.out.println(dp.length + " " + dp[0].length + " " + dp[0][0].length);
+
 	for(int i = 0; i < pasture.length; i++){
 	    String t = s.next();
 	    for(int j = 0; j < pasture[0].length; j++){
