@@ -1,5 +1,5 @@
 import java.util.*;
-public class MergeSort{
+public class Sorts{
 
     public static int[] mh(int[] a, int[] b, int count1, int count2, int count3, int[] result){
 	
@@ -34,19 +34,11 @@ public class MergeSort{
 	if(a.length == 1){
 	    return a;
 	}
-	int[] half1 = new int[a.length / 2];
-	int[] half2 = new int[a.length - (a.length / 2)];
-	for(int i = 0; i < half1.length; i++){
-	    half1[i] = a[i];
-	}
-	for(int i = a.length / 2; i < a.length; i++){
-	    half2[i - a.length / 2] = a[i];
-	}
-	return merge(mergeS(half1), mergeS(half2));
+	return merge(mergeS(Arrays.copyOfRange(a,0,a.length / 2)), mergeS(Arrays.copyOfRange(a,a.length / 2, a.length)));
     }
 
-    public static void mergeSort(int[] a){
-	int[] b = mergeSort(a);
+    public static void mergesort(int[] a){
+	int[] b = mergeS(a);
 	for(int i = 0; i < a.length; i++){
 	    a[i] = b[i];
 	}
@@ -60,9 +52,11 @@ public class MergeSort{
 	}
 	int[] test2 = {63,54,6,23,5,55,89,10};
 	long startTime = System.currentTimeMillis();
-	System.out.println(Arrays.toString(mergeSort(test)));
+	mergesort(test);
 	long endTime = System.currentTimeMillis();
 	System.out.println(endTime - startTime);
+	System.out.println(Arrays.toString(test));
+
 	
 
 
