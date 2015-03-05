@@ -1,5 +1,6 @@
 import java.util.*;
 public class Sorts{
+    private static int count;
 
     public static int[] mh(int[] a, int[] b, int count1, int count2, int count3, int[] result){
 	
@@ -31,9 +32,10 @@ public class Sorts{
     }
 
     public static int[] mergeS(int[] a){
-	if(a.length == 1){
+	if(a.length <= 1){
 	    return a;
 	}
+	
 	return merge(mergeS(Arrays.copyOfRange(a,0,a.length / 2)), mergeS(Arrays.copyOfRange(a,a.length / 2, a.length)));
     }
 
