@@ -29,12 +29,15 @@ public class Quick{
 	    System.out.println("NYEH" + Arrays.toString(other));
 
 	}
+	
 	other[start] = L[pivotindex];
 	System.out.println(Arrays.toString(other));
 
 	for(int i = 0; i < L.length; i++){
 	    L[i] = other[i];
 	}
+
+	
     }
 
     public static void main(String[] args) {
