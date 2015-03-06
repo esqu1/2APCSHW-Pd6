@@ -12,9 +12,13 @@ public class Quick{
 
 	Random r = new Random();
 	int pivotindex = r.nextInt(end - start + 1) + start;
-	System.out.println(pivotindex);
+	System.out.println(L[pivotindex]);
+	int min = start;
+	int max = end;
 
-	for(int i = start; i <= end; i++){
+	for(int i = min; i <= max; i++){
+	    System.out.println(L[i]);
+
 	    if(L[i] < L[pivotindex]){
 		other[start] = L[i];
 		start++;
@@ -22,9 +26,13 @@ public class Quick{
 		other[end] = L[i];
 		end--;
 	    }
+	    System.out.println("NYEH" + Arrays.toString(other));
+
 	}
 	other[start] = L[pivotindex];
-	for(int i = start; i <= end; i++){
+	System.out.println(Arrays.toString(other));
+
+	for(int i = 0; i < L.length; i++){
 	    L[i] = other[i];
 	}
     }
