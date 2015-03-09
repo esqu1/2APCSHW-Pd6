@@ -1,36 +1,14 @@
 import java.util.*;
 public class Sorts{
     private static int count;
-
-    public static int[] mh(int[] a, int[] b, int count1, int count2, int count3, int[] result){
-	
-	if(count1 >= a.length){
-	    for(int i = count2; i < b.length; i++){
-		result[i+count3-count2] = b[i];
-	    }
-	    return result;
-	}
-	if(count2 >= b.length){
-	    for(int i = count1; i < a.length; i++){
-		result[i+count3-count1] = a[i];
-	    }
-	    return result;
-	}	    
-	if(a[count1] > b[count2]){
-	    result[count3] = b[count2];
-	    return mh(a,b,count1,count2+1,count3+1,result);
-	}else{
-	    result[count3] = a[count1];
-	    return mh(a,b,count1+1,count2,count3+1,result);
-	}
-			
-    }
     
     public static int[] merge(int[] a, int[] b){
+	//System.out.println("Merging: " + Arrays.toString(a) + Arrays.toString(b));
+
 	int[] result = new int[a.length + b.length];
 	int count1 = 0, count2 = 0, place = 0;
 	
-	while(place != result.length){
+	while(place < result.length){
 	    if(count1 >= a.length){
 		for(int i = count2; i < b.length; i++){
 		    result[place] = b[i];
@@ -43,12 +21,16 @@ public class Sorts{
 		}
 	    }else if(a[count1] > b[count2]){
 		result[place] = b[count2];
+		count2++;
 		place++;		
 	    }else{
 		result[place] = a[count1];
+		count1++;
 		place++;
 	    }
 	}
+	//System.out.println("Output: " + Arrays.toString(result));
+
 	return result;
     }
 
@@ -68,7 +50,7 @@ public class Sorts{
     }
     
     public static void main(String[] args){
-	int[] test = new int[200000];
+	int[] test = new int[2000000];
 	Random r = new Random();
 	for(int i = 0; i < test.length; i++){
 	    test[i] = r.nextInt(100);
@@ -78,10 +60,5 @@ public class Sorts{
 	mergesort(test);
 	long endTime = System.currentTimeMillis();
 	System.out.println(endTime - startTime);
-	
-
-	
-
-
     }
 }

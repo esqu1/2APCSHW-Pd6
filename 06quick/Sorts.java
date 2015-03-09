@@ -5,7 +5,7 @@ public class Quick{
 	return partition(L,0,L.length - 1, n);
 	
     }
-
+    /*
     public static int partition(int[] L, int start, int end, int findindex){
 	int[] other = new int[L.length];
 	for(int i = 0; i < L.length; i++){
@@ -13,19 +13,12 @@ public class Quick{
 		other[i] = L[i];
 	    }
 	}
-	
-
 	Random r = new Random();
 	int pivotindex = r.nextInt(end - start + 1) + start;
 	//System.out.println(pivotindex);
-
-
 	int min = start;
 	int max = end;
-
 	for(int i = start; i <= end; i++){
-	    
-
 	    if(L[i] < L[pivotindex]){
 		other[min] = L[i];
 		min++;
@@ -33,29 +26,35 @@ public class Quick{
 		other[max] = L[i];
 		max--;
 	    }
-	    
-
 	}
 	other[min] = L[pivotindex];
 	//System.out.println("Continue: " + Arrays.toString(other));
-
-	
 	if(min == findindex){
 	    //System.out.println("Final List: " + Arrays.toString(other));
 	    return other[min];
 	}
-	
-	
-
 	for(int i = 0; i < L.length; i++){
 	    L[i] = other[i];
 	}
-
-	
 	if(min > findindex){
 	    return partition(L,start, min - 1, findindex);
 	}
 	return partition(L, min + 1, end, findindex);
+	
+    }
+    */
+
+    public static void swap(int[] L, int i1, int i2){
+	int temp = L[i1];
+	L[i1] = L[i2];
+	L[i2] = temp;
+    }
+
+    public static void partition(int[] L, int start, int end){
+	if(L.length == 1){
+	    return;
+	}
+	int dupindex = 0;
 	
     }
 
@@ -73,12 +72,6 @@ public class Quick{
 	System.out.println(quickselect(4,L));
 	Arrays.sort(L);
 	System.out.println(Arrays.toString(L));
-
-
-	
-
-	
-
     }
     
 }
