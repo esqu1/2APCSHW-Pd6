@@ -28,7 +28,28 @@ public class Sorts{
     
     public static int[] merge(int[] a, int[] b){
 	int[] result = new int[a.length + b.length];
-	return mh(a,b,0,0,0,result);
+	int count1 = 0, count2 = 0, place = 0;
+	
+	while(place != result.length){
+	    if(count1 >= a.length){
+		for(int i = count2; i < b.length; i++){
+		    result[place] = b[i];
+		    place++;
+		}
+	    }else if(count2 >= b.length){
+		for(int i = count1; i < a.length; i++){
+		    result[place] = a[i];
+		    place++;
+		}
+	    }else if(a[count1] > b[count2]){
+		result[place] = b[count2];
+		place++;		
+	    }else{
+		result[place] = a[count1];
+		place++;
+	    }
+	}
+	return result;
     }
 
     public static int[] mergeS(int[] a){
@@ -57,7 +78,7 @@ public class Sorts{
 	mergesort(test);
 	long endTime = System.currentTimeMillis();
 	System.out.println(endTime - startTime);
-	System.out.println(Arrays.toString(test));
+	
 
 	
 

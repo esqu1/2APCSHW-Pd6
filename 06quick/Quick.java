@@ -59,6 +59,10 @@ public class Quick{
 	
     }
 
+    public static void quickSort(int[] L){
+	
+    }
+
     public static void main(String[] args) {
 	int[] L = {5,7,8,23,56,15,59,35,60,24,36,57};
 	System.out.println(Arrays.toString(L));
