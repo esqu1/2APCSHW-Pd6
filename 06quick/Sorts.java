@@ -1,11 +1,12 @@
 import java.util.*;
-public class Quick{
+public class Sorts{
 
+    /*
     public static int quickselect(int n, int[] L){
 	return partition(L,0,L.length - 1, n);
 	
     }
-    /*
+    
     public static int partition(int[] L, int start, int end, int findindex){
 	int[] other = new int[L.length];
 	for(int i = 0; i < L.length; i++){
@@ -51,26 +52,56 @@ public class Quick{
     }
 
     public static void partition(int[] L, int start, int end){
-	if(L.length == 1){
+	if(start >= end){
 	    return;
 	}
+
 	int dupindex = 0;
+	Random r = new Random();
+	int pivotindex = r.nextInt(end - start + 1) + start;
+	int pivot = L[pivotindex];
+	int count = start;
+	int ender = end;
+	System.out.println(pivot);
+
+	/*while(count < ender){
+	    if(L[count] == pivot){
+		dupindex++;
+		count++;
+	    }else if(L[count] < pivot){
+		count++;
+	    }else if(L[count] > pivot){
+		swap(L,count, ender);
+		ender--;
+	    }
+	    }*/
+	for(int i = count; i < end; i++){
+	    if(L[pivotindex] > L[i]){
+		swap(L,count,i);
+		count++;
+	    }
+	}
+	
+	
+	//partition(L,start,count);
+	//partition(L,count+1,L.length - 1);
+	
 	
     }
 
     public static void quickSort(int[] L){
-	
+	partition(L,0,L.length-1);
     }
 
     public static void main(String[] args) {
 	int[] L = {5,7,8,23,56,15,59,35,60,24,36,57};
 	System.out.println(Arrays.toString(L));
 	for (int i = 0; i < L.length; i++) {
-	    System.out.println("Final: " + quickselect(i,L));
+	    //System.out.println("Final: " + quickselect(i,L));
 	    L = new int[] {5,7,8,23,56,15,59,35,60,24,36,57};
 	    }
-	System.out.println(quickselect(4,L));
-	Arrays.sort(L);
+	//System.out.println(quickselect(4,L));
+	quickSort(L);
 	System.out.println(Arrays.toString(L));
     }
     
