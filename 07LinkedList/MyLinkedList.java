@@ -3,7 +3,7 @@ public class MyLinkedList{
     private LNode first;
     
     public String toString(){
-	int result = "[ ";
+	String result = "[ ";
 	LNode now = first;
 	while(true){
 	    if(now != null){
@@ -42,6 +42,14 @@ public class MyLinkedList{
 	return size;
     }
 
+    public int get(int index){
+	int n = 0;
+	LNode now = first;
+	for (int i = 0; i < index; i++) {
+	    now = now.getNext();
+	}
+	return now.getData();
+    }
     
    
 }
