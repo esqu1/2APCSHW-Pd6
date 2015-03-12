@@ -81,17 +81,20 @@ public class MyLinkedList{
 	if(index < 0 || index > size){
 	    throw new IndexOutOfBoundsException();
 	}
+	if(index == 0){
+	    first = first.getNext();
+	}
 	int n = 0;
 	LNode now = first;
 	for (int i = 0; i < index - 1; i++) {
 	    now = now.getNext();
 	}
-	now.setNext(now.getNext().getNext());
-	if(now.getNext().getNext() == null){
-	    now.setNext(null);
-	}else{
+	try{
 	    now.setNext(now.getNext().getNext());
+	}catch(NullPointerException e){
+	    now.setNext(null);
 	}
+	size--;
     }
 
     public static void main(String[] args){
@@ -100,7 +103,8 @@ public class MyLinkedList{
 	l.add(4);
 	l.remove(1);
 	System.out.println(l.get(0));
-	System.out.println(l.get(1));
+	l.add(0,1);
+	//System.out.println(l.get(1));
 	System.out.println(l);
     }
     
