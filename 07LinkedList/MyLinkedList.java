@@ -67,14 +67,19 @@ public class MyLinkedList{
     }
 
     public void add(int index, int value){
-	int n = 0;
-	LNode now = first;
-	for (int i = 0; i < index - 1; i++) {
-	    now = now.getNext();
+	if(index == 0){
+	    LNode nyeh = new LNode(value,first);
+	    first = nyeh;
+	}else{
+	    int n = 0;
+	    LNode now = first;
+	    for (int i = 0; i < index - 1; i++) {
+		now = now.getNext();
+	    }
+	    LNode tobe = new LNode(value,now.getNext());
+	    now.setNext(tobe);
+	    size++;
 	}
-	LNode tobe = new LNode(value,now.getNext());
-	now.setNext(tobe);
-	size++;
     }
 
     public void remove(int index){
@@ -106,6 +111,10 @@ public class MyLinkedList{
 	l.add(0,1);
 	//System.out.println(l.get(1));
 	System.out.println(l);
+	l.add(1,8);
+	l.add(1,9);
+	System.out.println(l);
+
     }
     
 }
