@@ -89,8 +89,7 @@ public class Sorts{
     }
 
     public static void qsh(int[] L, int start, int end){
-	if(start >= end){
-	    return;
+	if(start >= end){	    return;
 	}
 	int pivotindex = partition(L,start,end);
 	qsh(L,start,pivotindex);

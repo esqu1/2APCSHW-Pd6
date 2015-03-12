@@ -1,6 +1,7 @@
 import java.util.*;
 public class MyLinkedList{
     private LNode first;
+    private int size = 0;
     
     public String toString(){
 	String result = "[ ";
@@ -27,19 +28,11 @@ public class MyLinkedList{
 		now = now.getNext();
 	    }
 	    now.setNext(new LNode(n));
-	}	
+	}
+	size++;
     }
 
     public int size(){
-	int size = 0;
-	LNode now = first;
-	while(true){
-	    if(now == null){
-		break;
-	    }
-	    size += 1;
-	    now = now.getNext();	    
-	}
 	return size;
     }
 
@@ -81,18 +74,34 @@ public class MyLinkedList{
 	}
 	LNode tobe = new LNode(value,now.getNext());
 	now.setNext(tobe);
+	size++;
+    }
+
+    public void remove(int index){
+	if(index < 0 || index > size){
+	    throw new IndexOutOfBoundsException();
+	}
+	int n = 0;
+	LNode now = first;
+	for (int i = 0; i < index - 1; i++) {
+	    now = now.getNext();
+	}
+	now.setNext(now.getNext().getNext());
+	if(now.getNext().getNext() == null){
+	    now.setNext(null);
+	}else{
+	    now.setNext(now.getNext().getNext());
+	}
     }
 
     public static void main(String[] args){
 	MyLinkedList l = new MyLinkedList();
 	l.add(3);
 	l.add(4);
+	l.remove(1);
 	System.out.println(l.get(0));
 	System.out.println(l.get(1));
 	System.out.println(l);
-
-
-
     }
     
 }
