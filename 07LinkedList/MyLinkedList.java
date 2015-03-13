@@ -15,7 +15,7 @@ public class MyLinkedList{
 	    
     }
 
-    public void add(int n){
+    public boolean add(int n){
 	if(size() == 0){
 	    first = new LNode(n);
 	}else{
@@ -26,6 +26,7 @@ public class MyLinkedList{
 	    now.setNext(new LNode(n));
 	}
 	size++;
+	return true;
     }
 
     public int size(){
@@ -89,7 +90,7 @@ public class MyLinkedList{
 	size++;
     }
 
-    public void remove(int index){
+    public boolean remove(int index){
 	if(index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
@@ -109,6 +110,7 @@ public class MyLinkedList{
 	    }
 	}
 	size--;
+	return true;
     }
 
     public static void main(String[] args){
