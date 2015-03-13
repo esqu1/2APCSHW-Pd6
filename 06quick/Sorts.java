@@ -52,24 +52,11 @@ public class Sorts{
     }
 
     public static int partition(int[] L, int start, int end){
-		Random r = new Random();
+	Random r = new Random();
 	int pivotindex = r.nextInt(end - start + 1) + start;
 	int pivot = L[pivotindex];
 	int count = start;
 	int ender = end;
-	
-
-	/*while(count < ender){
-	    if(L[count] == pivot){
-		dupindex++;
-		count++;
-	    }else if(L[count] < pivot){
-		count++;
-	    }else if(L[count] > pivot){
-		swap(L,count, ender);
-		ender--;
-	    }
-	    }*/
 	swap(L,ender,pivotindex);
 	
 
@@ -92,6 +79,8 @@ public class Sorts{
 	if(start >= end){	    return;
 	}
 	int pivotindex = partition(L,start,end);
+	System.out.println(pivotindex);
+
 	qsh(L,start,pivotindex);
 	qsh(L,pivotindex+1,end);
     }
@@ -101,10 +90,11 @@ public class Sorts{
     }
 
     public static void main(String[] args) {
-	int[] L = new int[20];
+	int[] L = new int[5];
 	Random r = new Random();
 	for (int i = 0; i < L.length; i++) {
-	    L[i] = r.nextInt(100);
+	    //L[i] = r.nextInt(100);
+	    L[i] = 0;
 	}
 	System.out.println(Arrays.toString(L));
 
