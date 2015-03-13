@@ -1,11 +1,11 @@
 import java.util.*;
-public class MyLinkedList{
-    private LNode first;
+public class MyLinkedList<T>{
+    private LNode<T> first, last;
     private int size = 0;
     
     public String toString(){
 	String result = "[ ";
-	LNode now = first;
+	LNode<T> now = first;
 	while(now != null){
 		result += now.getData() + " ";
 		now = now.getNext();
@@ -15,15 +15,14 @@ public class MyLinkedList{
 	    
     }
 
-    public boolean add(int n){
+    public boolean add(T n){
 	if(size() == 0){
-	    first = new LNode(n);
+	    first = new LNode<T>(n);
+	    last = first;
 	}else{
-	    LNode now = first;
-	    for (int i = 0; i < size() - 1; i++) {
-		now = now.getNext();
-	    }
-	    now.setNext(new LNode(n));
+	    LNode<T> nyeh = new LNode<T>(n);
+	    last.setNext(nyeh);
+	    last = nyeh;
 	}
 	size++;
 	return true;
@@ -33,33 +32,33 @@ public class MyLinkedList{
 	return size;
     }
 
-    public int get(int index){
+    public T get(int index){
 	if(index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
 	int n = 0;
-	LNode now = first;
+	LNode<T> now = first;
 	for (int i = 0; i < index; i++) {
 	    now = now.getNext();
 	}
 	return now.getData();
     }
 
-    public void set(int index, int value){
+    public void set(int index, T value){
 	if(index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
 	int n = 0;
-	LNode now = first;
+	LNode<T> now = first;
 	for (int i = 0; i < index; i++) {
 	    now = now.getNext();
 	}
 	now.setData(value);
     }
 
-    public int indexOf(int value){
+    public int indexOf(T value){
 	int n = 0;
-	LNode now = first;
+	LNode<T> now = first;
 	while(n < size()){
 	    if(now.getData() == value){
 		return n;
@@ -70,20 +69,20 @@ public class MyLinkedList{
 	return -1;
     }
 
-    public void add(int index, int value){
+    public void add(int index, T value){
 	if(index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
 	if(index == 0){
-	    LNode nyeh = new LNode(value,first);
+	    LNode<T> nyeh = new LNode<T>(value,first);
 	    first = nyeh;
 	}else{
 	    int n = 0;
-	    LNode now = first;
+	    LNode<T> now = first;
 	    for (int i = 0; i < index - 1; i++) {
 		now = now.getNext();
 	    }
-	    LNode tobe = new LNode(value,now.getNext());
+	    LNode<T> tobe = new LNode<T>(value,now.getNext());
 	    now.setNext(tobe);
 	    
 	}
@@ -98,15 +97,15 @@ public class MyLinkedList{
 	    first = first.getNext();
 	}else{
 	    int n = 0;
-	    LNode now = first;
+	    LNode<T> now = first;
 	    for (int i = 0; i < index - 1; i++) {
 		now = now.getNext();
 	    }
 	    try{
 		now.setNext(now.getNext().getNext());
 	    }catch(NullPointerException e){
-		System.out.println("bleh");
 		now.setNext(null);
+		last = now;
 	    }
 	}
 	size--;
@@ -114,7 +113,7 @@ public class MyLinkedList{
     }
 
     public static void main(String[] args){
-	MyLinkedList l = new MyLinkedList();
+	MyLinkedList<Integer> l = new MyLinkedList<Integer>();
 	l.add(3);
 	l.add(4);
 	l.remove(1);
@@ -135,7 +134,7 @@ public class MyLinkedList{
 	l.remove(l.size() - 1);
 	System.out.println(l);
 	System.out.println(l.get(1));
-	System.out.println(l.get(2));
+	System.out.println(l.get(0));
 
 
 

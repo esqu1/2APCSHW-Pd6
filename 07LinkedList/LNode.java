@@ -1,34 +1,30 @@
 import java.util.*;
-public class LNode{
-    private int data;
-    private LNode next;
+public class LNode<T>{
+    private T data;
+    private LNode<T> next;
     
-    public LNode(){
-	data = 0;
-    }
-
-    public LNode(int n){
+    public LNode(T n){
 	data = n;
     }
     
-    public LNode(int n, LNode l){
+    public LNode(T n, LNode<T> l){
 	data = n;
 	next = l;
     }
     
-    public int getData(){
+    public T getData(){
 	return data;
     }
 
-    public void setData(int n){
+    public void setData(T n){
 	data = n;
     }
 
-    public LNode getNext(){
+    public LNode<T> getNext(){
 	return next;
     }
 
-    public void setNext(LNode l){
+    public void setNext(LNode<T> l){
 	next = l;
     }
 
