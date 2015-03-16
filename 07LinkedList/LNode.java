@@ -2,6 +2,10 @@ import java.util.*;
 public class LNode<T>{
     private T data;
     private LNode<T> next;
+
+    public String name(){
+	return "lin.brandon";
+    }
     
     public LNode(T n){
 	data = n;

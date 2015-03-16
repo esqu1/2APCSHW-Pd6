@@ -2,6 +2,10 @@ import java.util.*;
 public class MyLinkedList<T>{
     private LNode<T> first, last;
     private int size = 0;
+
+    public String name(){
+	return "lin.brandon";
+    }
     
     public String toString(){
 	String result = "[ ";

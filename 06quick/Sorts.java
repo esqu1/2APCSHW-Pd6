@@ -1,6 +1,10 @@
 import java.util.*;
 public class Sorts{
 
+    public static String name(){
+	return "lin.brandon";
+    }
+
     /*
     public static int quickselect(int n, int[] L){
 	return partition(L,0,L.length - 1, n);

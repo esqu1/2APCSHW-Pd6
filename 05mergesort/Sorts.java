@@ -1,6 +1,10 @@
 import java.util.*;
 public class Sorts{
     private static int count;
+
+    public static String name(){
+	return "lin.brandon";
+    }
     
     public static int[] merge(int[] a, int[] b){
 	//System.out.println("Merging: " + Arrays.toString(a) + Arrays.toString(b));
