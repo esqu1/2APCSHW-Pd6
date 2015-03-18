@@ -1,7 +1,41 @@
 import java.util.*;
-public class MyLinkedList<T>{
+public class MyLinkedList<T> implements Iterable<T>{
+    private class MyLLIterator<T> implements Iterator<T>{
+	private LNode<T> current;
+
+	public MyLLIterator(LNode<T> curl){
+	    current = curl;
+	}
+	
+	public boolean hasNext(){
+	    try{
+		current = current.getNext();
+		return true;
+	    }catch(Exception e){
+		return false;
+	    }
+	}
+
+	public T next(){
+	    current = current.getNext();
+	    if(current.getData() == null){
+		
+		throw new NoSuchElementException();
+	    }
+	    return current.getData();
+	}
+
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+    }
+    
     private LNode<T> first, last;
     private int size = 0;
+
+    public Iterator<T> iterator(){
+	return new MyLLIterator<T>();
+    }
 
     public String name(){
 	return "lin.brandon";

@@ -76,12 +76,11 @@ public class Sorts{
     public static void qsh(int[] L, int start, int end){
 	if(start >= end){return;}
 	int pivotindex = partition(L,start,end);
-	System.out.println(pivotindex);
 	qsh(L,start,pivotindex);
 	qsh(L,pivotindex+1,end);
     }
 
-    public static void quickSort(int[] L){
+    public static void quick(int[] L){
 	qsh(L,0,L.length-1);
     }
 
@@ -121,6 +120,32 @@ public class Sorts{
 	}
 	int[] c2 = Arrays.copyOf(c1,10000000);
 	int[] c3 = Arrays.copyOf(c1,10000000);
+	int[] c4 = Arrays.copyOf(c1,10000000);
+	
+
+	long startTime = System.currentTimeMillis();
+	merge(c1);
+	long endTime = System.currentTimeMillis();
+	System.out.println("MergeSort: " + (endTime - startTime));
+
+	startTime = System.currentTimeMillis();
+	quick(c2);
+	endTime = System.currentTimeMillis();
+	System.out.println("QuickSort: " + (endTime - startTime));
+
+	startTime = System.currentTimeMillis();
+	radix(c3);
+	endTime = System.currentTimeMillis();
+	System.out.println("RadixSort: " + (endTime - startTime));
+
+	startTime = System.currentTimeMillis();
+	Arrays.sort(c4);
+	endTime = System.currentTimeMillis();
+	System.out.println("Arrays.sort(): " + (endTime - startTime));
+
+
+
+
 
 	
     }
