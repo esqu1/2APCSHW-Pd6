@@ -8,21 +8,17 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 	
 	public boolean hasNext(){
-	    try{
-		current = current.getNext();
-		return true;
-	    }catch(Exception e){
-		return false;
-	    }
+	    return current != null;
 	}
 
 	public T next(){
-	    current = current.getNext();
-	    if(current.getData() == null){
-		
-		throw new NoSuchElementException();
-	    }
-	    return current.getData();
+	    
+	    if(hasNext()){
+		T nyeh = current.getData();
+		current = current.getNext();
+		return nyeh;
+	    }		
+	    throw new NoSuchElementException();
 	}
 
 	public void remove(){
@@ -193,6 +189,13 @@ public class MyLinkedList<T> implements Iterable<T>{
 	System.out.println(l);
 	System.out.println(l.get(1));
 	System.out.println(l.get(0));
+
+	Iterator<Integer> m = l.iterator();
+	System.out.println(m.next());
+	System.out.println(m.next());
+	System.out.println(m.next());
+	System.out.println(m.next());
+
 
 
 
