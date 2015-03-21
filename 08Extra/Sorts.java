@@ -57,19 +57,19 @@ public class Sorts{
     }
 
     public static int partition(int[] L, int start, int end){
-	Random r = new Random();
-	int pivotindex = r.nextInt(end - start + 1) + start;
-	int pivot = L[pivotindex];
-	int count = start;
-	int ender = end;
-	swap(L,ender,pivotindex);
-	for(int i = count; i < end; i++){
-	    if(L[ender] > L[i]){
-		swap(L,count,i);
-		count++;
-	    }
-	}
-	swap(L,ender,count);
+	int pivot = L[(int)(Math.random() * (end - start)) + start];
+	int low = 0, mid = 0, high = L.length - 1;
+	while(mid <= hi){
+	    if(L[mid] < pivot){
+		swap(low,mid);
+		low++;
+		mid++;
+	    }else if(L[mid] > pivot){
+		swap(mid,high);
+		high--;
+	    }else{
+		mid++;
+	    }       
 	return count;
     }
 
@@ -88,7 +88,7 @@ public class Sorts{
     // RADIX SORT
     ////////////////////
     public static void radix(int[] c){
-	ArrayList<ArrayList<Integer>> bucket = new ArrayList<ArrayList<Integer>>();
+	ArrayList<Integer>[] bucket = new ArrayList<Integer>[10];
 	for(int i = 0; i < 10; i++){
 	    bucket.add(new ArrayList<Integer>());
 	}	    
