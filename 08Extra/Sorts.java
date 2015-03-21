@@ -120,6 +120,15 @@ public class Sorts{
 	int[] c2 = Arrays.copyOf(c1,10000000);
 	int[] c3 = Arrays.copyOf(c1,10000000);
 	int[] c4 = Arrays.copyOf(c1,10000000);
+	int[] c5 = new int[100000];
+	for(int i = 0; i < c5.length; i++){
+	    c5[i] = 0;
+	}
+
+	int[] c = {4,2,7,3,7,0,1,34,6,8,2};
+	quick(c);
+	System.out.println(Arrays.toString(c));
+
 	
 
 	long startTime = System.currentTimeMillis();
@@ -142,7 +151,12 @@ public class Sorts{
 	endTime = System.currentTimeMillis();
 	System.out.println("Arrays.sort(): " + (endTime - startTime));
 
+	startTime = System.currentTimeMillis();
+	quick(c5);
+	endTime = System.currentTimeMillis();
+	System.out.println("DupQuickSort: " + (endTime - startTime));
 
+	
 
 
 
