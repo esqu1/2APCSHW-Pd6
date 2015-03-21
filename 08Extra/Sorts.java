@@ -56,39 +56,38 @@ public class Sorts{
 	L[i2] = temp;
     }
 
-    public static int partition(int[] L, int start, int end){
+    public static void partition(int[] L, int start, int end){
+	if(start >= end){
+	    return;
+	}
 	int pivot = L[(int)(Math.random() * (end - start)) + start];
-	int low = 0, mid = 0, high = L.length - 1;
-	while(mid <= hi){
+	int low = start, mid = start, high = end;
+	while(mid <= high){
 	    if(L[mid] < pivot){
-		swap(low,mid);
+		swap(L,low,mid);
 		low++;
 		mid++;
 	    }else if(L[mid] > pivot){
-		swap(mid,high);
+		swap(L,mid,high);
 		high--;
 	    }else{
 		mid++;
-	    }       
-	return count;
-    }
-
-    public static void qsh(int[] L, int start, int end){
-	if(start >= end){return;}
-	int pivotindex = partition(L,start,end);
-	qsh(L,start,pivotindex);
-	qsh(L,pivotindex+1,end);
+	    }
+	}
+	partition(L,start,low);
+	partition(L,mid,end);
+	
     }
 
     public static void quick(int[] L){
-	qsh(L,0,L.length-1);
+	partition(L,0,L.length - 1);
     }
 
     ////////////////////
     // RADIX SORT
     ////////////////////
     public static void radix(int[] c){
-	ArrayList<Integer>[] bucket = new ArrayList<Integer>[10];
+	ArrayList<ArrayList<Integer>> bucket = new ArrayList<ArrayList<Integer>>();
 	for(int i = 0; i < 10; i++){
 	    bucket.add(new ArrayList<Integer>());
 	}	    
