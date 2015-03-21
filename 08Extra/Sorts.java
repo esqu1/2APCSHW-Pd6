@@ -51,31 +51,73 @@ public class Sorts{
     // QUICK SORT
     /////////////////////////    
     public static void swap(int[] L, int i1, int i2){
+	if(i1 == i2){
+	    return;
+	}
 	int temp = L[i1];
 	L[i1] = L[i2];
 	L[i2] = temp;
+	
     }
 
     public static void partition(int[] L, int start, int end){
+	//System.out.println("Start: " + start + ", End: " + end);
+	
 	if(start >= end){
 	    return;
 	}
-	int pivot = L[(int)(Math.random() * (end - start)) + start];
-	int low = start, mid = start, high = end;
-	while(mid <= high){
-	    if(L[mid] < pivot){
-		swap(L,low,mid);
-		low++;
-		mid++;
-	    }else if(L[mid] > pivot){
-		swap(L,mid,high);
-		high--;
-	    }else{
-		mid++;
+	Random r = new Random();
+	int pivot1 = L[start];
+	int pivot2 = L[end];
+	/*if(pivot1 == pivot2){
+	    while(pivot1 == pivot2){
+		pivot1 = L[(int)(Math.random() * (end - start)) + start];
 	    }
+	    }*/
+	if(pivot1 > pivot2){
+	    int temp = pivot1;
+	    pivot1 = pivot2;
+	    pivot2 = temp;
 	}
+	//System.out.println("Pivot: " + pivot1);
+	//System.out.println("Pivot: " + pivot2);
+	int low = start, mid = start, high = end, p1 = start, p2 = end;
+	while(mid <= p2){
+	    if(L[mid] < pivot1){
+		swap(L,low,mid);
+		if(p1 != low){
+		    swap(L,mid,p1);
+		}
+		low++;
+		p1++;
+		mid++;
+	    }else if(L[mid] == pivot1){
+		swap(L,p1,mid);
+		p1++;
+		mid++;
+	    }else if(L[mid] > pivot1 && L[mid] < pivot2){
+		mid++;
+	    }else if(L[mid] == pivot2){
+		swap(L,p2,mid);
+		p2--;
+	    }else{
+		swap(L,mid,high);
+		if(p2 != high){
+		    swap(L,p2,mid);
+		}
+		p2--;
+		high--;
+	    }	    
+	    
+	}
+	
+
+
+	//System.out.println(Arrays.toString(L));
+
 	partition(L,start,low);
-	partition(L,mid,end);
+	partition(L,p1,p2);
+	partition(L,high,end);
 	
     }
 
@@ -129,35 +171,35 @@ public class Sorts{
 	quick(c);
 	System.out.println(Arrays.toString(c));
 
-	
+	/*
 
 	long startTime = System.currentTimeMillis();
 	merge(c1);
 	long endTime = System.currentTimeMillis();
 	System.out.println("MergeSort: " + (endTime - startTime));
-
-	startTime = System.currentTimeMillis();
+	*/
+	long startTime = System.currentTimeMillis();
 	quick(c2);
-	endTime = System.currentTimeMillis();
+	long endTime = System.currentTimeMillis();
 	System.out.println("QuickSort: " + (endTime - startTime));
-
+	/*
 	startTime = System.currentTimeMillis();
 	radix(c3);
 	endTime = System.currentTimeMillis();
 	System.out.println("RadixSort: " + (endTime - startTime));
-
+	
 	startTime = System.currentTimeMillis();
 	Arrays.sort(c4);
 	endTime = System.currentTimeMillis();
 	System.out.println("Arrays.sort(): " + (endTime - startTime));
-
+	*/
 	startTime = System.currentTimeMillis();
 	quick(c5);
 	endTime = System.currentTimeMillis();
 	System.out.println("DupQuickSort: " + (endTime - startTime));
 
 	
-
+	
 
 
 	
