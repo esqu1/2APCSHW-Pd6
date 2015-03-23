@@ -60,9 +60,24 @@ public class Sorts{
 	
     }
 
+    public static void insertion(int[] c, int start, int end){
+	for(int i = start + 1; i < end; i++){
+	    int j = i;
+	    int temp = c[j];
+	    while(j > 0 && temp < c[j-1]){
+		c[j] = c[j-1];
+		j--;
+	    }
+	    c[j] = temp;
+	}
+    }
+
     public static void partition(int[] L, int start, int end){
 	//System.out.println("Start: " + start + ", End: " + end);
-	
+	if(end - start < 3){
+	    insertion(L,start,end);
+	    return;
+	}
 	if(start >= end){
 	    return;
 	}
@@ -81,26 +96,13 @@ public class Sorts{
 	}
 	//System.out.println("Pivot: " + pivot1);
 	//System.out.println("Pivot: " + pivot2);
-	int low = start, mid = start, high = end, p1 = start, p2 = end;
+	int low = start+1, mid = low, high = end-1;
 	while(mid <= p2){
 	    if(L[mid] < pivot1){
-		swap(L,low,mid);
-		if(p1 != low){
-		    swap(L,mid,p1);
-		}
+		swap(L,mid,low);
 		low++;
-		p1++;
 		mid++;
-	    }else if(L[mid] == pivot1){
-		swap(L,p1,mid);
-		p1++;
-		mid++;
-	    }else if(L[mid] > pivot1 && L[mid] < pivot2){
-		mid++;
-	    }else if(L[mid] == pivot2){
-		swap(L,p2,mid);
-		p2--;
-	    }else{
+	    }else if(L[mid] > pivot2){
 		swap(L,mid,high);
 		if(p2 != high){
 		    swap(L,p2,mid);
