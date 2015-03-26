@@ -6,7 +6,7 @@ public class MyDeque<T>{
 
   public MyDeque(){
     list = new Object[10];
-    head = 0;
+    head = 1;
     tail = 0;
   }
 
@@ -30,16 +30,18 @@ public class MyDeque<T>{
     }
     list[head] = value;
     size += 1;
+
   }
 
   public void addLast(T value){
     resize();
     tail++;
-    if(tail >= size){
+    if(tail != 0 && tail >= size){
       tail -= size;
     }
     list[tail] = value;
     size += 1;
+
   }
 
   public T removeFirst(){
@@ -74,5 +76,22 @@ public class MyDeque<T>{
 
   public static void main(String[] args){
     MyDeque<Integer> m = new MyDeque<Integer>();
+    m.addFirst(new Integer(7));
+    System.out.println(m.getFirst());
+    m.addFirst(new Integer(8));
+    System.out.println(m.getFirst());
+    m.addFirst(new Integer(5));
+    System.out.println(m.getFirst());
+    m.addFirst(new Integer(5));
+    m.addFirst(new Integer(2));
+    m.addFirst(new Integer(1));
+    m.addFirst(new Integer(34));
+    m.addFirst(new Integer(3));
+    m.addFirst(new Integer(23));
+    m.addFirst(new Integer(2));
+    m.addFirst(new Integer(2));
+    m.addFirst(new Integer(5));
+    System.out.println(m.getFirst());
+
   }
 }
