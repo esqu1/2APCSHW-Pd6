@@ -103,7 +103,7 @@ public class MyDeque<T>{
     System.out.println(m.getLast());
     m.removeFirst();
     m.removeFirst();
-    System.out.println(m.getFirst());
+    System.out.println(m.getFirst()); 
 
   }
 }
