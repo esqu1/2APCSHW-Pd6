@@ -97,10 +97,13 @@ public class MyDeque<T>{
     System.out.println(m.getFirst());
 
     m.addLast(new Integer(4));
-    System.out.println(Arrays.toString(m.list));  
+    System.out.println(Arrays.toString(m.list));
     System.out.println(m.getLast());
     System.out.println(m.removeLast());
     System.out.println(m.getLast());
+    m.removeFirst();
+    m.removeFirst();
+    System.out.println(m.getFirst());
 
   }
 }
