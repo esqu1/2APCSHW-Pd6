@@ -1,10 +1,15 @@
 import java.util.*;
 public class MyDeque<T>{
-  private T[] list;
+  private Object[] list;
+  private Object head, tail;
+  private int size;
 
   public MyDeque(){
-  
+    list = new Object[10];
+    head = list[0];
+    tail = list[0];
   }
+
   public void addFirst(T value){
 
   }
