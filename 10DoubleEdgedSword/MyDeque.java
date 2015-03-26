@@ -43,22 +43,36 @@ public class MyDeque<T>{
   }
 
   public T removeFirst(){
-
+    T value = (T) list[head];
+    list[head] = null;
+    head++;
+    if(head >= size){
+      head -= size;
+    }
+    size--;
+    return value;
   }
 
   public T removeLast(){
-
+    T value = (T) list[tail];
+    list[tail] = null;
+    tail--;
+    if(tail < 0){
+      tail += size;
+    }
+    size--;
+    return value;
   }
 
   public T getFirst(){
-
+    return (T) list[head];
   }
 
   public T getLast(){
-
+    return (T) list[tail];
   }
 
   public static void main(String[] args){
-
+    MyDeque<Integer> m = new MyDeque<Integer>();
   }
 }
