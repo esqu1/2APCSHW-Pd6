@@ -11,19 +11,19 @@ public class MyDeque<T>{
   }
 
   public void resize(){
-    Object[] newlist = new Object[size * 2];
-    for(int i = 0; i < size; i++){
-      newlist[i] = list[(head + i) % size];
+    if(size == list.length){
+      Object[] newlist = new Object[size * 2];
+      for(int i = 0; i < size; i++){
+        newlist[i] = list[(head + i) % size];
+      }
+      list = newlist;
+      head = 0;
+      tail = size - 1;
     }
-    list = newlist;
-    head = 0;
-    tail = size - 1;
   }
 
   public void addFirst(T value){
-    if(size == list.length){
-      resize();
-    }
+    resize();
     head--;
     if(head < 0){
       head += size;
@@ -33,7 +33,13 @@ public class MyDeque<T>{
   }
 
   public void addLast(T value){
-
+    resize();
+    tail++;
+    if(tail >= size){
+      tail -= size;
+    }
+    list[tail] = value;
+    size += 1;
   }
 
   public T removeFirst(){
