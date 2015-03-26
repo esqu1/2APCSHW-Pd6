@@ -1,6 +1,6 @@
 import java.util.*;
 public class MyDeque<T>{
-  private Object[] list;
+  public Object[] list;
   private int head, tail;
   private int size;
 
@@ -26,7 +26,7 @@ public class MyDeque<T>{
     resize();
     head--;
     if(head < 0){
-      head += size;
+      head += list.length;
     }
     list[head] = value;
     size += 1;
@@ -36,8 +36,8 @@ public class MyDeque<T>{
   public void addLast(T value){
     resize();
     tail++;
-    if(tail != 0 && tail >= size){
-      tail -= size;
+    if(tail != 0 && tail >= list.length){
+      tail -= list.length;
     }
     list[tail] = value;
     size += 1;
@@ -48,8 +48,8 @@ public class MyDeque<T>{
     T value = (T) list[head];
     list[head] = null;
     head++;
-    if(head >= size){
-      head -= size;
+    if(head >= list.length){
+      head -= list.length;
     }
     size--;
     return value;
@@ -60,7 +60,7 @@ public class MyDeque<T>{
     list[tail] = null;
     tail--;
     if(tail < 0){
-      tail += size;
+      tail += list.length;
     }
     size--;
     return value;
@@ -82,16 +82,25 @@ public class MyDeque<T>{
     System.out.println(m.getFirst());
     m.addFirst(new Integer(5));
     System.out.println(m.getFirst());
+
     m.addFirst(new Integer(5));
     m.addFirst(new Integer(2));
     m.addFirst(new Integer(1));
+
     m.addFirst(new Integer(34));
     m.addFirst(new Integer(3));
     m.addFirst(new Integer(23));
     m.addFirst(new Integer(2));
     m.addFirst(new Integer(2));
     m.addFirst(new Integer(5));
+
     System.out.println(m.getFirst());
+
+    m.addLast(new Integer(4));
+    System.out.println(Arrays.toString(m.list));  
+    System.out.println(m.getLast());
+    System.out.println(m.removeLast());
+    System.out.println(m.getLast());
 
   }
 }
