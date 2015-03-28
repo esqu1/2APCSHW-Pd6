@@ -6,22 +6,22 @@ public class Sorts{
 	return "lin.brandon";
     }
     
-    public static int[] merging(int[] a, int[] b){
-	int[] result = new int[a.length + b.length];
-	int count1 = 0, count2 = 0, place = 0;
+    public static void merging(int[] a, int min, int mid, int max){
+	int[] result = new int[max - min + 1];
+	int count1 = min, count2 = mid, place = 0;
 	while(place < result.length){
-	    if(count1 >= a.length){
-		for(int i = count2; i < b.length; i++){
-		    result[place] = b[i];
-		    place++;
-		}
-	    }else if(count2 >= b.length){
-		for(int i = count1; i < a.length; i++){
+	    if(count1 >= mid){
+		for(int i = count2; i < max; i++){
 		    result[place] = a[i];
 		    place++;
 		}
-	    }else if(a[count1] > b[count2]){
-		result[place] = b[count2];
+	    }else if(count2 >= mid - min){
+		for(int i = count1; i < mid; i++){
+		    result[place] = a[i];
+		    place++;
+		}
+	    }else if(a[count1] > a[count2]){
+		result[place] = a[count2];
 		count2++;
 		place++;		
 	    }else{
@@ -30,21 +30,29 @@ public class Sorts{
 		place++;
 	    }
 	}
-	return result;
+	for(int i : result){
+	    a[min] = i;
+	    min++;
+	}
     }
 
-    public static int[] mergeS(int[] a){
-	if(a.length <= 1){
-	    return a;
+    public static void mergeS(int[] a, int min, int max){
+	if(max - min <= 1){
+	    return;
 	}
-	return merging(mergeS(Arrays.copyOfRange(a,0,a.length / 2)), mergeS(Arrays.copyOfRange(a,a.length / 2, a.length)));
+	int mid = (max - min) / 2;
+	mergeS(a,min, mid);
+	mergeS(a,mid, max);
+	merging(a,min, mid, max);
+	
     }
 
     public static void merge(int[] a){
-	int[] b = mergeS(a);
-	for(int i = 0; i < a.length; i++){
-	    a[i] = b[i];
-	}
+	if(a.length<= 1){
+	    return;
+	}	    
+	mergeS(a,0,a.length / 2);
+	mergeS(a,a.length / 2, a.length);
     }
 
     /////////////////////////
@@ -144,15 +152,15 @@ public class Sorts{
 	int[] c = {4,2,7,3,7,0,1,34,6,8,2};
 	quick(c);
 	System.out.println(Arrays.toString(c));
-	/*
+	
 	long startTime = System.currentTimeMillis();
 	merge(c1);
 	long endTime = System.currentTimeMillis();
 	System.out.println("MergeSort: " + (endTime - startTime));
-	*/
-        long startTime = System.currentTimeMillis();
+	
+        startTime = System.currentTimeMillis();
 	quick(c2);
-	long endTime = System.currentTimeMillis();
+        endTime = System.currentTimeMillis();
 	System.out.println("QuickSort 20: " + (endTime - startTime));
 
 	
