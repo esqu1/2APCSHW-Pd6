@@ -3,9 +3,13 @@ public class Sorts{
     public static String name(){
 	return "lin.brandon";
     }
-    
+
+    // MIN INCLUSIVE, MAX EXCLUSIVE    
     public static void merging(int[] a, int min, int mid, int max){
-	int[] result = new int[max - min + 1];
+	//System.out.println("Min: " + min + " Mid: " + mid + " Max: " + max);
+	//System.out.println(a[0] + " " +  a[1] + " " + a[2] + " " + a[3] + " " + a[4]);
+
+	int[] result = new int[max - min];
 	int count1 = min, count2 = mid, place = 0;
 	while(place < result.length){
 	    if(count1 >= mid){
@@ -13,7 +17,7 @@ public class Sorts{
 		    result[place] = a[i];
 		    place++;
 		}
-	    }else if(count2 >= max - mid + 1){
+	    }else if(count2 >= max){
 		for(int i = count1; i < mid; i++){
 		    result[place] = a[i];
 		    place++;
@@ -35,7 +39,7 @@ public class Sorts{
     }
 
     public static void mergeS(int[] a, int min, int max){
-	System.out.println("Min: " + min + " Max: " + max );
+	//System.out.println("Min: " + min + " Max: " + max );
 
 	if(max - min <= 1){
 	    return;
@@ -53,6 +57,7 @@ public class Sorts{
 	}	    
 	mergeS(a,0,a.length / 2);
 	mergeS(a,a.length / 2, a.length);
+	merging(a,0,a.length / 2, a.length);
     }
 
     /////////////////////////
@@ -157,7 +162,7 @@ public class Sorts{
 	merge(c1);
 	long endTime = System.currentTimeMillis();
 	System.out.println("MergeSort: " + (endTime - startTime));
-	
+		
         startTime = System.currentTimeMillis();
 	quick(c2);
         endTime = System.currentTimeMillis();
