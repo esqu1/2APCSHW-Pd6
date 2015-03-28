@@ -74,11 +74,11 @@ public class Sorts{
 	    return;
 	}
 	
-	if(end - start < 5){
+	if(end - start < 10){
 	    insertion(L,start,end);
 	    return;
 	}
-	int pivot = L[(int)(Math.random() * (end - start)) + start];
+	int pivot = L[start];
 	int low = start, mid = start, high = end;
 	while(mid <= high){
 	    if(L[mid] < pivot){
