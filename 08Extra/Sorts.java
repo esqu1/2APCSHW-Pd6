@@ -1,7 +1,5 @@
 import java.util.*;
 public class Sorts{
-    private static int count;
-
     public static String name(){
 	return "lin.brandon";
     }
@@ -15,11 +13,11 @@ public class Sorts{
 		    result[place] = a[i];
 		    place++;
 		}
-	    }else if(count2 >= mid - min){
+	    }else if(count2 >= max - mid + 1){
 		for(int i = count1; i < mid; i++){
 		    result[place] = a[i];
 		    place++;
-		}
+ 		}
 	    }else if(a[count1] > a[count2]){
 		result[place] = a[count2];
 		count2++;
@@ -37,10 +35,12 @@ public class Sorts{
     }
 
     public static void mergeS(int[] a, int min, int max){
+	System.out.println("Min: " + min + " Max: " + max );
+
 	if(max - min <= 1){
 	    return;
 	}
-	int mid = (max - min) / 2;
+	int mid = (max + min) / 2;
 	mergeS(a,min, mid);
 	mergeS(a,mid, max);
 	merging(a,min, mid, max);
