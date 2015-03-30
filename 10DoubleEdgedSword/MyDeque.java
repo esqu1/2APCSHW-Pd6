@@ -23,6 +23,9 @@ public class MyDeque<T>{
   }
 
   public void addFirst(T value){
+    if(value == null){
+      throw new NullPointerException();
+    }
     resize();
     head--;
     if(head < 0){
@@ -34,6 +37,9 @@ public class MyDeque<T>{
   }
 
   public void addLast(T value){
+    if(value == null){
+      throw new NullPointerException();
+    }
     resize();
     tail++;
     if(tail != 0 && tail >= list.length){
@@ -45,6 +51,9 @@ public class MyDeque<T>{
   }
 
   public T removeFirst(){
+    if(size == 0){
+      throw new NoSuchElementException();
+    }
     T value = (T) list[head];
     list[head] = null;
     head++;
@@ -56,6 +65,9 @@ public class MyDeque<T>{
   }
 
   public T removeLast(){
+    if(size == 0){
+      throw new NoSuchElementException();
+    }
     T value = (T) list[tail];
     list[tail] = null;
     tail--;
@@ -67,10 +79,16 @@ public class MyDeque<T>{
   }
 
   public T getFirst(){
+    if(size == 0){
+      throw new NoSuchElementException();
+    }
     return (T) list[head];
   }
 
   public T getLast(){
+    if(size == 0){
+      throw new NoSuchElementException();
+    }
     return (T) list[tail];
   }
 
@@ -103,7 +121,9 @@ public class MyDeque<T>{
     System.out.println(m.getLast());
     m.removeFirst();
     m.removeFirst();
-    System.out.println(m.getFirst()); 
+    System.out.println(m.getFirst());
+    m.addFirst(new Integer(3));
+    System.out.println(m.getFirst());
 
   }
 }
