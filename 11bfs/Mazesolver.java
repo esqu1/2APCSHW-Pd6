@@ -5,7 +5,7 @@ public class Mazesolver{
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
-    private Deque<Integer> deque;
+    private Deque<Coor> deque;
     //Terminal keycodes to clear the terminal, or hide/show the cursor
     private String clear =  "\033[2J";
     private String hide =  "\033[?25l";
@@ -93,13 +93,17 @@ public class Mazesolver{
 	    return false;
 	}else{
 	    maze[startx][starty] = ' ';
-	    return solve(startx,starty);
+	    return solve(startx,starty, 1);
 	}
     }
     
     public boolean solve(int x,int y,int count){
 	System.out.println(this);
 
+	if(maze[x][y] == '#'){
+		return false;
+	}
+	maze[x][y] = (char)count;
 	return false;//by default the maze didn't get solved
     }
     
