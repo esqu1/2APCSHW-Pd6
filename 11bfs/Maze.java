@@ -88,11 +88,11 @@ public class Maze{
   }
 
   public boolean solveBFS(boolean animate){
+    deque.addFirst(new Coor(startx, starty));
     return bfshelp(startx, starty, 1, animate);
   }
 
   public boolean bfshelp(int x, int y, int count, boolean animate){
-    deque.addFirst(new Coor(startx, starty));
     Coor c = deque.removeLast();
     if(maze[c.get1()][c.get2()]  == '#'){
       return false;
@@ -102,28 +102,6 @@ public class Maze{
       return true;
     }
 
-    /*
-    if(c.get1() > 0 && maze[c.get1() - 1][c.get2()] == ' '){
-    deque.addFirst(new Coor(c.get() - 1,c.get2());
-    maze[c.get() - 1][c.get2()] = (char)count;
-    count++;
   }
-  if(c.get1() < maze.length && maze[c.get1() + 1][c.get2()] == ' '){
-  deque.addFirst(new Coor(c.get() + 1,c.get2());
-  maze[c.get() + 1][c.get2()] = (char)count;
-  count++;
-}
-if(c.get1() > 0 && maze[c.get1() - 1][c.get2()] == ' '){
-deque.addFirst(new Coor(c.get() - 1,c.get2());
-maze[c.get() - 1][c.get2()] = (char)count;
-count++;
-}
-if(c.get1() > 0 && maze[c.get1() - 1][c.get2()] == ' '){
-deque.addFirst(new Coor(c.get() - 1,c.get2());
-maze[c.get() - 1][c.get2()] = (char)count;
-count++;
-}*/
-
-}
 }
 }
