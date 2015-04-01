@@ -3,6 +3,7 @@ import java.io.*;
 
 public class Maze{
   private char[][] maze;
+  private int[][] para;
   private int maxx,maxy;
   private int startx,starty;
   private Deque<Coor> deque;
@@ -98,18 +99,35 @@ public class Maze{
     }
   }
 
+  public void sweep(int a, int b){
+
+  }
+
   public boolean solveBFS(boolean animate){
-    deque.addLast(new Coor(startx, starty,1));
+    deque.addLast(new Coor(startx, starty));
     while(deque.size() != 0){
       Coor c = deque.removeFirst();
       int a = c.get1();
       int b = c.get2();
-      if(maze[a][b] == 'E'){
-        aha(a,b,count);
-        return true;
-      }if(maze[a][b] == ' '){
-        deque.addLast(new Coor(a,b,c.getCount() + 1));
-        maze[a][b] = (char)count;
+      int[][] set = {
+        {a,b-1},
+        {a,b+1},
+        {a-1,b},
+        {a+1,b}
+      };
+      boolean deadOrNah = false;
+      for(int[] neigh : set){
+        if(maze[neigh[0]][neigh[1]] == 'E'){
+          aha(neigh[0],neigh[1]);
+          return true;
+        }if(maze[neigh[0]][neigh[1]] == ' '){
+          deadOrNah = true;
+          deque.addLast(new Coor(neigh[0],neigh[1]));
+          maze[a][b] = 'x';
+        }
+      }
+      if(!deadOrNah){
+        sweep(a,b);
       }
 
     }

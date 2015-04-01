@@ -5,7 +5,6 @@ public class Coor{
 	public Coor(int i1, int i2, int count){
 		this.i1 = i1;
 		this.i2 = i2;
-		this.count = count;
 	}
 
 	public int get1(){
@@ -14,10 +13,6 @@ public class Coor{
 
 	public int get2(){
 		return i2;
-	}
-
-	public int getCount(){
-		return count;
 	}
 
 	public String toString(){
