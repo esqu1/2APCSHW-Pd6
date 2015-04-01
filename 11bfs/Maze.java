@@ -88,20 +88,15 @@ public class Maze{
   }
 
   public boolean solveBFS(boolean animate){
-    deque.addFirst(new Coor(startx, starty));
-    return bfshelp(startx, starty, 1, animate);
-  }
-
-  public boolean bfshelp(int x, int y, int count, boolean animate){
-    Coor c = deque.removeLast();
-    if(maze[c.get1()][c.get2()]  == '#'){
-      return false;
+    deque.addLast(new Coor(startx, starty));
+    while(deque.size() != 0){
+      Coor c = deque.removeFirst();
+      if(maze[c.get1()][c.get2()]  == '#'){
+        return false;
+      }
+      if(maze[c.get1()][c.get2()] == 'E'){
+        return true;
+      }
     }
-    if(maze[c.get1()][c.get2()]) == 'E'){
-
-      return true;
-    }
-
   }
-}
 }
