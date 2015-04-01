@@ -87,16 +87,32 @@ public class Maze{
     return hide + go(0,0) + ans + "\n" + show + color(37,40);
   }
 
+  public void aha(int a, int b, int fin){
+    while(maze[a][b] != 'S'){
+      int[][] set = {
+        {a,b-1},
+        {a,b+1},
+        {a-1,b},
+        {a+1,b}
+      };
+    }
+  }
+
   public boolean solveBFS(boolean animate){
-    deque.addLast(new Coor(startx, starty));
+    deque.addLast(new Coor(startx, starty,1));
     while(deque.size() != 0){
       Coor c = deque.removeFirst();
-      if(maze[c.get1()][c.get2()]  == '#'){
-        return false;
-      }
-      if(maze[c.get1()][c.get2()] == 'E'){
+      int a = c.get1();
+      int b = c.get2();
+      if(maze[a][b] == 'E'){
+        aha(a,b,count);
         return true;
+      }if(maze[a][b] == ' '){
+        deque.addLast(new Coor(a,b,c.getCount() + 1));
+        maze[a][b] = (char)count;
       }
+
     }
+    return false;
   }
 }
