@@ -88,6 +88,7 @@ public class Maze{
       }
     }
     ans += "\n\n\n";
+    /*
     for(int i = 0; i < maxx * maxy; i++){
       if(i % maxx == 0 && i != 0){
         ans += "\n";
@@ -98,16 +99,16 @@ public class Maze{
       }else{
         ans += c;
       }
-    }
+    }*/
     return hide + go(0,0) + ans + "\n" + show;
   }
 
   public void aha(int a, int b, int fin){
     solution = new int[fin * 2];
-    solution[solution.length - 1] = b;
-    solution[solution.length - 2] = a;
+    solution[solution.length - 1] = a;
+    solution[solution.length - 2] = b;
     int count = solution.length - 3;
-    while(fin > 0 && maze[a][b] != 'S'){
+    while(count > 0 && maze[a][b] != 'S'){
       int[][] set = {
         {a,b-1},
         {a,b+1},
@@ -161,6 +162,7 @@ public class Maze{
           wait(300);
           System.out.println(this);
           aha(neigh[0],neigh[1],c.getCount()+1);
+          System.out.println(this);
           return true;
         }if(maze[neigh[0]][neigh[1]] == ' '){
           deadOrNah = true;
