@@ -106,7 +106,6 @@ public class Maze{
     solution = new int[fin * 2];
     solution[solution.length - 1] = b;
     solution[solution.length - 2] = a;
-    fin -= 1;
     int count = solution.length - 3;
     while(fin > 0 && maze[a][b] != 'S'){
       int[][] set = {
@@ -118,7 +117,8 @@ public class Maze{
       for(int[] neigh : set){
         if(para[neigh[0]][neigh[1]] == fin - 1){
           solution[count] = neigh[0];
-          solution[count--] = neigh[1];
+          count--;
+          solution[count] = neigh[1];
           a = neigh[0];
           b = neigh[1];
           count--;
@@ -129,7 +129,7 @@ public class Maze{
         }
         //System.out.println("nyeh");
       }
-      //System.out.println(Arrays.toString(solution));
+      System.out.println(Arrays.toString(solution));
     }
   }
 
@@ -156,7 +156,10 @@ public class Maze{
         if(maze[neigh[0]][neigh[1]] == 'E'){
           maze[a][b] = 'x';
           System.out.println(c.getCount());
+          para[a][b] = c.getCount();
+          para[neigh[0]][neigh[1]] = c.getCount() + 1;
           wait(300);
+          System.out.println(this);
           aha(neigh[0],neigh[1],c.getCount()+1);
           return true;
         }if(maze[neigh[0]][neigh[1]] == ' '){
