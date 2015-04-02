@@ -3,7 +3,7 @@ public class Driver{
 
     public static void main(String[] args) {
 	     Maze m = new Maze("data3.dat");
-	      m.solveBFS(false);
+	      m.solveDFS(false);
         System.out.println(m);
     }
 
