@@ -4,6 +4,7 @@ import java.io.*;
 public class Maze{
   private char[][] maze;
   private int[][] para;
+  private int[] solution;
   private int maxx,maxy;
   private int startx,starty;
   private Deque<Coor> deque;
@@ -90,13 +91,26 @@ public class Maze{
   }
 
   public void aha(int a, int b, int fin){
-    while(maze[a][b] != 'S'){
+    solution = new int[fin * 2];
+    solution[solution.length - 1] = b;
+    solution[solution.length - 2] = a;
+    fin -= 1;
+    int count = solution.length - 3;
+    while(fin > 0 && maze[a][b] != 'S'){
       int[][] set = {
         {a,b-1},
         {a,b+1},
         {a-1,b},
         {a+1,b}
       };
+      for(int[] neigh : set){
+        if(para[neigh[0]][neigh[1]] == fin - 1){
+          solution[count] = neigh[0];
+          solution[count--] = neigh[1];
+          count--;
+          fin--;
+        }
+      }
     }
   }
 
