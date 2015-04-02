@@ -117,6 +117,7 @@ public class Maze{
       };
       for(int[] neigh : set){
         if(para[neigh[0]][neigh[1]] == fin - 1){
+          maze[neigh[0]][neigh[1]] = '.';
           solution[count] = neigh[0];
           count--;
           solution[count] = neigh[1];
@@ -134,8 +135,14 @@ public class Maze{
     }
   }
 
-  public void sweep(int a, int b){
-
+  public void sweep(){
+    for(int i = 0; i < maze.length; i++){
+      for(int j = 0; j < maze[0].length; j++){
+        if(maze[i][j] == 'x' && maze[i][j] != 'S'){
+          maze[i][j] = ' ';
+        }
+      }
+    }
   }
 
   public boolean solveBFS(boolean animate){
@@ -162,6 +169,7 @@ public class Maze{
           wait(300);
           System.out.println(this);
           aha(neigh[0],neigh[1],c.getCount()+1);
+          sweep();
           System.out.println(this);
           return true;
         }if(maze[neigh[0]][neigh[1]] == ' '){
