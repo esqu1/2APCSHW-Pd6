@@ -7,7 +7,7 @@ public class Maze{
   private int[] solution;
   private int maxx,maxy;
   private int startx,starty;
-  private Deque<Coor> deque;
+  private MyDeque<Coor> deque = new MyDeque<Coor>();
   //Terminal keycodes to clear the terminal, or hide/show the cursor
   private String clear =  "\033[2J";
   private String hide =  "\033[?25l";
@@ -87,6 +87,18 @@ public class Maze{
         ans += color(32,40)+c;
       }
     }
+    ans += "\n\n\n";
+    for(int i = 0; i < maxx * maxy; i++){
+      if(i % maxx == 0 && i != 0){
+        ans += "\n";
+      }
+      int c =  para[i % maxx][i / maxx];
+      if(c == '#'){
+        ans += color(38,47)+c;
+      }else{
+        ans += color(32,40)+c;
+      }
+    }
     return hide + go(0,0) + ans + "\n" + show + color(37,40);
   }
 
@@ -107,10 +119,15 @@ public class Maze{
         if(para[neigh[0]][neigh[1]] == fin - 1){
           solution[count] = neigh[0];
           solution[count--] = neigh[1];
+          a = neigh[0];
+          b = neigh[1];
           count--;
           fin--;
+          break;
         }
+        System.out.println("nyeh");
       }
+      System.out.println(Arrays.toString(solution));
     }
   }
 
@@ -120,7 +137,9 @@ public class Maze{
 
   public boolean solveBFS(boolean animate){
     deque.addLast(new Coor(startx, starty,1));
-    while(deque.size() != 0){
+    while(!deque.isEmpty()){
+      System.out.println(this);
+      wait(100);
       Coor c = deque.removeFirst();
       int a = c.get1();
       int b = c.get2();
@@ -143,7 +162,7 @@ public class Maze{
         }
       }
       if(!deadOrNah){
-        sweep(a,b);
+        //sweep(a,b);
       }
 
     }
