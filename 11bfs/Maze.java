@@ -90,100 +90,85 @@ public class Maze{
     ans += "\n\n\n";
     /*
     for(int i = 0; i < maxx * maxy; i++){
-      if(i % maxx == 0 && i != 0){
-        ans += "\n";
-      }
-      int c =  para[i % maxx][i / maxx];
-      if(c == '#'){
-        ans += c;
-      }else{
-        ans += c;
-      }
-    }*/
-    return hide + go(0,0) + ans + "\n" + show;
+    if(i % maxx == 0 && i != 0){
+    ans += "\n";
   }
+  int c =  para[i % maxx][i / maxx];
+  if(c == '#'){
+  ans += c;
+}else{
+ans += c;
+}
+}*/
+return hide + go(0,0) + ans + "\n" + show;
+}
 
-  public void aha(int a, int b, int fin){
-    solution = new int[fin * 2];
-    solution[solution.length - 1] = a;
-    solution[solution.length - 2] = b;
-    int count = solution.length - 3;
-    while(count > 0 && maze[a][b] != 'S'){
-      int[][] set = {
-        {a,b-1},
-        {a,b+1},
-        {a-1,b},
-        {a+1,b}
-      };
-      for(int[] neigh : set){
-        if(para[neigh[0]][neigh[1]] == fin - 1){
-          maze[neigh[0]][neigh[1]] = '.';
-          solution[count] = neigh[0];
-          count--;
-          solution[count] = neigh[1];
-          a = neigh[0];
-          b = neigh[1];
-          count--;
-          fin--;
-
-          System.out.println("hi");
-          break;
-        }
-        //System.out.println("nyeh");
-      }
-      System.out.println(Arrays.toString(solution));
-    }
-  }
-
-  public void sweep(){
-    for(int i = 0; i < maze.length; i++){
-      for(int j = 0; j < maze[0].length; j++){
-        if(maze[i][j] == 'x' && maze[i][j] != 'S'){
-          maze[i][j] = ' ';
-        }
+public void aha(int a, int b, int fin){
+  solution = new int[fin * 2];
+  solution[solution.length - 1] = a;
+  solution[solution.length - 2] = b;
+  int count = solution.length - 3;
+  while(count > 0 && maze[a][b] != 'S'){
+    int[][] set = {
+      {a,b-1},
+      {a,b+1},
+      {a-1,b},
+      {a+1,b}
+    };
+    for(int[] neigh : set){
+      if(para[neigh[0]][neigh[1]] == fin - 1){
+        maze[neigh[0]][neigh[1]] = '.';
+        solution[count] = neigh[0];
+        count--;
+        solution[count] = neigh[1];
+        a = neigh[0];
+        b = neigh[1];
+        count--;
+        fin--;
+        break;
       }
     }
   }
+}
 
-  public boolean solveBFS(boolean animate){
-    deque.addLast(new Coor(startx, starty,1));
-    while(!deque.isEmpty()){
-      System.out.println(this);
-      wait(100);
-      Coor c = deque.removeFirst();
-      int a = c.get1();
-      int b = c.get2();
-      int[][] set = {
-        {a,b-1},
-        {a,b+1},
-        {a-1,b},
-        {a+1,b}
-      };
-      boolean deadOrNah = false;
-      for(int[] neigh : set){
-        if(maze[neigh[0]][neigh[1]] == 'E'){
-          maze[a][b] = 'x';
-          System.out.println(c.getCount());
-          para[a][b] = c.getCount();
-          para[neigh[0]][neigh[1]] = c.getCount() + 1;
-          wait(300);
-          System.out.println(this);
-          aha(neigh[0],neigh[1],c.getCount()+1);
-          sweep();
-          System.out.println(this);
-          return true;
-        }if(maze[neigh[0]][neigh[1]] == ' '){
-          deadOrNah = true;
-          para[a][b] = c.getCount();
-          deque.addLast(new Coor(neigh[0],neigh[1],c.getCount() + 1));
-          maze[a][b] = 'x';
-        }
+public void sweep(){
+  for(int i = 0; i < maze.length; i++){
+    for(int j = 0; j < maze[0].length; j++){
+      if(maze[i][j] == 'x' && maze[i][j] != 'S'){
+        maze[i][j] = ' ';
       }
-      if(!deadOrNah){
-        //sweep(a,b);
-      }
-
     }
-    return false;
   }
+}
+
+public boolean solveBFS(boolean animate){
+  deque.addLast(new Coor(startx, starty,1));
+  while(!deque.isEmpty()){
+    Coor c = deque.removeFirst();
+    int a = c.get1();
+    int b = c.get2();
+    int[][] set = {
+      {a,b-1},
+      {a,b+1},
+      {a-1,b},
+      {a+1,b}
+    };
+    for(int[] neigh : set){
+      if(maze[neigh[0]][neigh[1]] == 'E'){
+        maze[a][b] = 'x';
+        para[a][b] = c.getCount();
+        para[neigh[0]][neigh[1]] = c.getCount() + 1;
+        aha(neigh[0],neigh[1],c.getCount()+1);
+        sweep();
+        return true;
+      }if(maze[neigh[0]][neigh[1]] == ' '){
+        para[a][b] = c.getCount();
+        deque.addLast(new Coor(neigh[0],neigh[1],c.getCount() + 1));
+        maze[a][b] = 'x';
+      }
+    }
+
+  }
+  return false;
+}
 }
