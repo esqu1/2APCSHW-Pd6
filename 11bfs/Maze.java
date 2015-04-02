@@ -48,6 +48,7 @@ public class Maze{
         starty = i / maxx;
       }
     }
+    para = new int[maze.length][maze[0].length];
   }
 
   //terminal specific character to move the cursor
@@ -104,7 +105,7 @@ public class Maze{
   }
 
   public boolean solveBFS(boolean animate){
-    deque.addLast(new Coor(startx, starty));
+    deque.addLast(new Coor(startx, starty,1));
     while(deque.size() != 0){
       Coor c = deque.removeFirst();
       int a = c.get1();
@@ -118,11 +119,12 @@ public class Maze{
       boolean deadOrNah = false;
       for(int[] neigh : set){
         if(maze[neigh[0]][neigh[1]] == 'E'){
-          aha(neigh[0],neigh[1]);
+          aha(neigh[0],neigh[1],c.getCount());
           return true;
         }if(maze[neigh[0]][neigh[1]] == ' '){
           deadOrNah = true;
-          deque.addLast(new Coor(neigh[0],neigh[1]));
+          para[a][b] = c.getCount();
+          deque.addLast(new Coor(neigh[0],neigh[1],c.getCount() + 1));
           maze[a][b] = 'x';
         }
       }
