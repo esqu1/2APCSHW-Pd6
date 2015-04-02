@@ -82,9 +82,9 @@ public class Maze{
       }
       char c =  maze[i % maxx][i / maxx];
       if(c == '#'){
-        ans += color(38,47)+c;
+        ans += c;
       }else{
-        ans += color(32,40)+c;
+        ans += c;
       }
     }
     ans += "\n\n\n";
@@ -94,12 +94,12 @@ public class Maze{
       }
       int c =  para[i % maxx][i / maxx];
       if(c == '#'){
-        ans += color(38,47)+c;
+        ans += c;
       }else{
-        ans += color(32,40)+c;
+        ans += c;
       }
     }
-    return hide + go(0,0) + ans + "\n" + show + color(37,40);
+    return hide + go(0,0) + ans + "\n" + show;
   }
 
   public void aha(int a, int b, int fin){
@@ -123,11 +123,13 @@ public class Maze{
           b = neigh[1];
           count--;
           fin--;
+
+          System.out.println("hi");
           break;
         }
-        System.out.println("nyeh");
+        //System.out.println("nyeh");
       }
-      System.out.println(Arrays.toString(solution));
+      //System.out.println(Arrays.toString(solution));
     }
   }
 
@@ -152,7 +154,10 @@ public class Maze{
       boolean deadOrNah = false;
       for(int[] neigh : set){
         if(maze[neigh[0]][neigh[1]] == 'E'){
-          aha(neigh[0],neigh[1],c.getCount());
+          maze[a][b] = 'x';
+          System.out.println(c.getCount());
+          wait(300);
+          aha(neigh[0],neigh[1],c.getCount()+1);
           return true;
         }if(maze[neigh[0]][neigh[1]] == ' '){
           deadOrNah = true;
