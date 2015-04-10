@@ -57,11 +57,6 @@ public class Maze{
     return ("\033[" + x + ";" + y + "H");
   }
 
-
-  private String color(int foreground,int background){
-    return ("\033[0;" + foreground + ";" + background + "m");
-  }
-
   public void clearTerminal(){
     System.out.println(clear);
   }
@@ -93,24 +88,10 @@ public class Maze{
   }
 
   public String toString(boolean animate){
-    String ans = "Solving a maze that is " + maxx + " by " + maxy + "\n";
-    for(int i = 0; i < maxx * maxy; i++){
-      if(i % maxx == 0 && i != 0){
-        ans += "\n";
-      }
-      char c =  maze[i % maxx][i / maxx];
-      if(c == '#'){
-        ans += c;
-      }else{
-        ans += c;
-      }
-    }
-    ans += "\n\n\n";
-
     if(animate){
-      return hide + go(0,0) + ans + "\n" + show;
+      return clear + go(0,0) + toString() + "\n" + show;
     }else{
-      return ans;
+      return toString();
     }
   }
 
@@ -150,11 +131,22 @@ public class Maze{
         }
       }
     }
+    for(int i = 0; i < maze.length; i++){
+      for(int j = 0; j < maze[0].length; j++){
+        if(maze[i][j] == '.'){
+          maze[i][j] = 'x';
+        }
+      }
+    }
   }
 
   public boolean solveBFS(boolean animate){
     deque.addLast(new Coor(startx, starty,1));
     while(!deque.isEmpty()){
+      if(animate){
+        System.out.println(this.toString(true));
+        wait(20);
+      }
       Coor c = deque.removeFirst();
       int a = c.get1();
       int b = c.get2();
@@ -186,6 +178,10 @@ public class Maze{
   public boolean solveDFS(boolean animate){
     deque.addLast(new Coor(startx, starty,1));
     while(!deque.isEmpty()){
+      if(animate){
+        System.out.println(this.toString(true));
+        wait(20);
+      }
       Coor c = deque.removeLast();
       int a = c.get1();
       int b = c.get2();
@@ -212,5 +208,17 @@ public class Maze{
 
     }
     return false;
+  }
+
+  public boolean solveBFS(){
+    return solveBFS(false);
+  }
+
+  public boolean solveDFS(){
+    return solveDFS(false);
+  }
+
+  public int[] solutionCoordinates(){
+    return solution;
   }
 }
