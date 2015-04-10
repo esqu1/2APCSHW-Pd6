@@ -8,10 +8,13 @@ public class Maze{
   private int maxx,maxy;
   private int startx,starty;
   private MyDeque<Coor> deque = new MyDeque<Coor>();
-  //Terminal keycodes to clear the terminal, or hide/show the cursor
   private String clear =  "\033[2J";
   private String hide =  "\033[?25l";
   private String show =  "\033[?25h";
+
+  public String name(){
+    return "lin.brandon";
+  }
 
   public Maze(String filename){
     startx = -1;
@@ -57,9 +60,7 @@ public class Maze{
     return ("\033[" + x + ";" + y + "H");
   }
 
-  public void clearTerminal(){
-    System.out.println(clear);
-  }
+
 
   public void wait(int millis){
     try {
