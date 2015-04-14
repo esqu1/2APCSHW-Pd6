@@ -1,13 +1,22 @@
 import java.util.*;
 public class MyDeque<T>{
-  public Object[] list;
+  private Object[] list;
+  private int[] ps;
+  private int mode;
   private int head, tail;
   private int size;
+
 
   public MyDeque(){
     list = new Object[10];
     head = 1;
     tail = 0;
+  }
+
+  public MyDeque(int mode){
+    this();
+    this.mode = mode;
+    ps = new int[10];
   }
 
   public boolean isEmpty(){
@@ -99,6 +108,11 @@ public class MyDeque<T>{
       throw new NoSuchElementException();
     }
     return (T) list[tail];
+  }
+
+  public void add(T t, int priority){
+    addFirst(t);
+
   }
 
   public static void main(String[] args){
