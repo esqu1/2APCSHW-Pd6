@@ -123,15 +123,38 @@ public class MyDeque<T>{
     return (T) list[tail];
   }
 
+  private void insert(T t, int priority){
+    
+  }
+
   public void add(T t, int priority){
-    addFirst(t);
+    /*addFirst(t);
     resizeps();
     head--;
     if(head < 0){
       head += ps.length;
     }
     ps[head] = priority;
-    size += 1;
+    size += 1;*/
+    for(int i = 0; i < size; i++){
+      if(priority > ps[i]){
+
+      }
+    }
+  }
+
+  public T remove(){
+    int h = head;
+    int t = tail;
+    T thing = null;
+    int maxp = Integer.MIN_VALUE;
+    while(h % size != t){
+      if(ps[h%size] > maxp){
+        thing = list[h%size];
+        maxp = ps[h%size];
+      }
+    }
+    return thing;
   }
 
   public static void main(String[] args){
