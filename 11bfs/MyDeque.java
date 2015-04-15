@@ -20,12 +20,13 @@ public class MyDeque<T>{
   }
 
   public boolean isEmpty(){
-    try{
+    /*try{
       T y = getFirst();
       return false;
-    }catch(NullPointerException e){
+    }catch(Exception e){
       return true;
-    }
+    }*/
+    return size == 0;
   }
 
   public void resize(){

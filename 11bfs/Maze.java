@@ -168,11 +168,13 @@ public class Maze{
         }if(maze[neigh[0]][neigh[1]] == ' '){
           para[a][b] = c.getCount();
           deque.addLast(new Coor(neigh[0],neigh[1],c.getCount() + 1));
-          maze[a][b] = 'x';
+
+          maze[neigh[0]][neigh[1]] = 'x';
         }
       }
 
     }
+    sweep();
     return false;
   }
 
