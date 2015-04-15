@@ -123,8 +123,23 @@ public class MyDeque<T>{
     return (T) list[tail];
   }
 
-  private void insert(T t, int priority){
-    
+  private void insert(T t, int place, int priority){
+    resize();
+    resizeps();
+    T temp = (T)list[place];
+    list[place] = t;
+    T temp2 = null;
+    int ptemp = ps[place];
+    ps[place] = priority;
+    int ptemp2 = 0;
+    for(int i = place+1; i <=size; i++){
+      temp2 = (T)list[i];
+      list[i] = temp;
+      temp = temp2;
+      ptemp2 = ps[i];
+      ps[i] = ptemp;
+      ptemp = ptemp2;
+    }
   }
 
   public void add(T t, int priority){
@@ -138,7 +153,8 @@ public class MyDeque<T>{
     size += 1;*/
     for(int i = 0; i < size; i++){
       if(priority > ps[i]){
-
+        insert(t, i, priority);
+        return;
       }
     }
   }
@@ -150,7 +166,7 @@ public class MyDeque<T>{
     int maxp = Integer.MIN_VALUE;
     while(h % size != t){
       if(ps[h%size] > maxp){
-        thing = list[h%size];
+        thing = (T)list[h%size];
         maxp = ps[h%size];
       }
     }
@@ -158,7 +174,7 @@ public class MyDeque<T>{
   }
 
   public static void main(String[] args){
-    MyDeque<Integer> m = new MyDeque<Integer>();
+    MyDeque<Integer> m = new MyDeque<Integer>(2);
     m.addFirst(new Integer(7));
     System.out.println(m.getFirst());
     m.addFirst(new Integer(8));
@@ -189,6 +205,9 @@ public class MyDeque<T>{
     System.out.println(m.getFirst());
     m.addFirst(new Integer(3));
     System.out.println(m.getFirst());
+    System.out.println(Arrays.toString(m.list));
+    m.insert(new Integer(4),2,3);
+    System.out.println(Arrays.toString(m.list));
 
   }
 }
