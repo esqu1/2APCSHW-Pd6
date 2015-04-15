@@ -40,6 +40,18 @@ public class MyDeque<T>{
     }
   }
 
+  public void resizeps(){
+    if(size == ps.length){
+      int[] newlist = new int[size * 2];
+      for(int i = 0; i < size; i++){
+        newlist[i] = ps[(head + i) % size];
+      }
+      ps = newlist;
+      head = 0;
+      tail = size - 1;
+    }
+  }
+
   public void addFirst(T value){
     if(value == null){
       throw new NullPointerException();
@@ -112,7 +124,13 @@ public class MyDeque<T>{
 
   public void add(T t, int priority){
     addFirst(t);
-
+    resizeps();
+    head--;
+    if(head < 0){
+      head += ps.length;
+    }
+    ps[head] = priority;
+    size += 1;
   }
 
   public static void main(String[] args){
