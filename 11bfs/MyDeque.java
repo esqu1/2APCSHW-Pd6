@@ -143,15 +143,7 @@ public class MyDeque<T>{
   }
 
   public void add(T t, int priority){
-    /*addFirst(t);
-    resizeps();
-    head--;
-    if(head < 0){
-      head += ps.length;
-    }
-    ps[head] = priority;
-    size += 1;*/
-    if(isEmpty()){
+    /*if(isEmpty()){
       list[0] = t;
       ps[0] = priority;
       return;
@@ -159,13 +151,20 @@ public class MyDeque<T>{
     for(int i = head-1; i != tail+1%size; i++){
       if(list[i] == null){
         insert(t,i,priority);
-        return;
-      }
-      if(priority > ps[i]){
+      }else if(priority > ps[i]){
         insert(t, i, priority);
-        return;
       }
-    }
+      head--;
+      if(head < 0){
+        head += list.length;
+      }
+      tail = (tail + 1) % list.length;
+      return;
+    }*/
+    addFirst(t);
+    resizeps();
+    ps[head] = priority;
+    size += 1;
   }
 
   public T remove(){
@@ -178,6 +177,7 @@ public class MyDeque<T>{
         thing = (T)list[h%size];
         maxp = ps[h%size];
       }
+      h++;
     }
     return thing;
   }
@@ -190,6 +190,8 @@ public class MyDeque<T>{
     m.add(3,4);
     System.out.println(Arrays.toString(m.list));
     System.out.println(Arrays.toString(m.ps));
+    System.out.println(m.head);
+    System.out.println(m.tail);
 
   }
 }
