@@ -132,12 +132,12 @@ public class MyDeque<T>{
     int ptemp = ps[place];
     ps[place] = priority;
     int ptemp2 = 0;
-    for(int i = place+1; i <=size; i++){
-      temp2 = (T)list[i];
-      list[i] = temp;
+    for(int i = place+1; i != tail; i++){
+      temp2 = (T)list[i%size];
+      list[i%size] = temp;
       temp = temp2;
-      ptemp2 = ps[i];
-      ps[i] = ptemp;
+      ptemp2 = ps[i%size];
+      ps[i%size] = ptemp;
       ptemp = ptemp2;
     }
   }
@@ -151,7 +151,16 @@ public class MyDeque<T>{
     }
     ps[head] = priority;
     size += 1;*/
-    for(int i = 0; i < size; i++){
+    if(isEmpty()){
+      list[0] = t;
+      ps[0] = priority;
+      return;
+    }
+    for(int i = head-1; i != tail+1%size; i++){
+      if(list[i] == null){
+        insert(t,i,priority);
+        return;
+      }
       if(priority > ps[i]){
         insert(t, i, priority);
         return;
@@ -175,39 +184,12 @@ public class MyDeque<T>{
 
   public static void main(String[] args){
     MyDeque<Integer> m = new MyDeque<Integer>(2);
-    m.addFirst(new Integer(7));
-    System.out.println(m.getFirst());
-    m.addFirst(new Integer(8));
-    System.out.println(m.getFirst());
-    m.addFirst(new Integer(5));
-    System.out.println(m.getFirst());
-
-    m.addFirst(new Integer(5));
-    m.addFirst(new Integer(2));
-    m.addFirst(new Integer(1));
-
-    m.addFirst(new Integer(34));
-    m.addFirst(new Integer(3));
-    m.addFirst(new Integer(23));
-    m.addFirst(new Integer(2));
-    m.addFirst(new Integer(2));
-    m.addFirst(new Integer(5));
-
-    System.out.println(m.getFirst());
-
-    m.addLast(new Integer(4));
+    m.add(6,5);
     System.out.println(Arrays.toString(m.list));
-    System.out.println(m.getLast());
-    System.out.println(m.removeLast());
-    System.out.println(m.getLast());
-    m.removeFirst();
-    m.removeFirst();
-    System.out.println(m.getFirst());
-    m.addFirst(new Integer(3));
-    System.out.println(m.getFirst());
+    System.out.println(Arrays.toString(m.ps));
+    m.add(3,4);
     System.out.println(Arrays.toString(m.list));
-    m.insert(new Integer(4),2,3);
-    System.out.println(Arrays.toString(m.list));
+    System.out.println(Arrays.toString(m.ps));
 
   }
 }
