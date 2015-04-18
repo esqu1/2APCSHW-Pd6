@@ -161,8 +161,9 @@ public class MyDeque<T>{
       tail = (tail + 1) % list.length;
       return;
     }*/
-    addFirst(t);
     resizeps();
+    addFirst(t);
+
     ps[head] = priority;
     size += 1;
   }
@@ -170,15 +171,21 @@ public class MyDeque<T>{
   public T remove(){
     int h = head;
     int t = tail;
+    int loc;
     T thing = null;
-    int maxp = Integer.MIN_VALUE;
+    int minp = Integer.MAX_VALUE;
     while(h % size != t){
-      if(ps[h%size] > maxp){
+      if(ps[h%size] < maxp){
         thing = (T)list[h%size];
         maxp = ps[h%size];
+	loc = h%size;
       }
       h++;
     }
+    list[loc] = list[head];
+    ps[loc] = ps[head];
+    list[head] = null;
+    size--;
     return thing;
   }
 
