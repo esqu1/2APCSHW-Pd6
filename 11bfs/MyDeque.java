@@ -165,20 +165,19 @@ public class MyDeque<T>{
     addFirst(t);
 
     ps[head] = priority;
-    size += 1;
   }
 
   public T remove(){
     int h = head;
     int t = tail;
-    int loc;
+    int loc = 0;
     T thing = null;
     int minp = Integer.MAX_VALUE;
-    while(h % size != t){
-      if(ps[h%size] < maxp){
-        thing = (T)list[h%size];
-        maxp = ps[h%size];
-	loc = h%size;
+    while(h % list.length != t){
+      if(ps[h%list.length] < minp){
+        thing = (T)list[h%list.length];
+        minp = ps[h%list.length];
+	      loc = h%list.length;
       }
       h++;
     }
@@ -186,6 +185,7 @@ public class MyDeque<T>{
     ps[loc] = ps[head];
     list[head] = null;
     size--;
+    head = (head + 1) % list.length;
     return thing;
   }
 
@@ -199,6 +199,35 @@ public class MyDeque<T>{
     System.out.println(Arrays.toString(m.ps));
     System.out.println(m.head);
     System.out.println(m.tail);
+    m.add(2,5);
+    m.add(123,1);
+    System.out.println(Arrays.toString(m.list));
+    System.out.println(Arrays.toString(m.ps));
+    System.out.println(m.head);
+    System.out.println(m.tail);
+    System.out.println(m.remove());
+    System.out.println(Arrays.toString(m.list));
+    System.out.println(Arrays.toString(m.ps));
+    System.out.println(m.size);
+    System.out.println(m.head);
+    System.out.println(m.tail);
+    System.out.println(m.remove());
+    System.out.println(Arrays.toString(m.list));
+    System.out.println(Arrays.toString(m.ps));
+    System.out.println(m.size);
+    m.add(12,3);
+    m.add(1,6);
+    m.add(9,7);
+    m.add(4,2);
+    m.add(7,9);
+    m.add(3,6);
+    m.add(12,12);
+    m.add(4,2);
+    m.add(2,1);
+    m.add(3,4);
+    System.out.println(Arrays.toString(m.list));
+    System.out.println(Arrays.toString(m.ps));
+
 
   }
 }
