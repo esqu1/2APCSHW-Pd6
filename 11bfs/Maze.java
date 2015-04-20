@@ -6,8 +6,8 @@ public class Maze{
   private int[][] para;
   private int[] solution;
   private int maxx,maxy;
-  private int startx,starty;
-  private MyDeque<Coor> deque = new MyDeque<Coor>();
+  private int startx,starty,finishx,finishy;
+  private MyDeque<Coor> deque;
   private String clear =  "\033[2J";
   private String hide =  "\033[?25l";
   private String show =  "\033[?25h";
@@ -54,6 +54,9 @@ public class Maze{
       if(c == 'S'){
         startx = i % maxx;
         starty = i / maxx;
+      }else if(c == 'E'){
+        finishx = i % maxx;
+        finishy = i / maxx;
       }
     }
     para = new int[maze.length][maze[0].length];
@@ -145,8 +148,17 @@ public class Maze{
     }
   }
 
+  public int getDistance(int x,int y){
+    return Math.abs(x - finishx) + Math.abs(y - finishy);
+  }
+
   public boolean solve(int mode, boolean animate){
-    deque.addLast(new Coor(startx, starty,1));
+    deque = new MyDeque<Coor>(mode);
+    if(mode == BFS || mode == DFS){
+      deque.addLast(new Coor(startx, starty,1));
+    }else if(mode == BEST || mode == ASTAR){
+      deque.add(new Coor(startx,starty,1), 0);
+    }
     while(!deque.isEmpty()){
       if(animate){
         System.out.println(this.toString(true));
@@ -178,8 +190,13 @@ public class Maze{
           return true;
         }if(maze[neigh[0]][neigh[1]] == ' '){
           para[a][b] = c.getCount();
-          deque.addLast(new Coor(neigh[0],neigh[1],c.getCount() + 1));
-
+          if(mode == BFS || mode == DFS){
+            deque.addLast(new Coor(neigh[0],neigh[1],c.getCount() + 1));
+          }else if(mode == BEST){
+            deque.add(new Coor(neigh[0],neigh[1],c.getCount() + 1), getDistance(neigh[0],neigh[1]));
+          }else if(mode == ASTAR){
+            deque.add(new Coor(neigh[0],neigh[1],c.getCount() + 1), getDistance(neigh[0],neigh[1]) + c.getCount() + 1);
+          }
           maze[neigh[0]][neigh[1]] = 'x';
         }
       }
@@ -262,7 +279,7 @@ public class Maze{
   }
 
   public boolean solveBest(){
-
+    return false;
   }
 
   public boolean solveBFS(){
