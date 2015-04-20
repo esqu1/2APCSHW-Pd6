@@ -11,6 +11,10 @@ public class Maze{
   private String clear =  "\033[2J";
   private String hide =  "\033[?25l";
   private String show =  "\033[?25h";
+  private final int BFS = 1;
+  private final int DFS = 2;
+  private final int BEST = 3;
+  private final int ASTAR = 4;
 
   public String name(){
     return "lin.brandon";
@@ -141,6 +145,50 @@ public class Maze{
     }
   }
 
+  public boolean solve(int mode, boolean animate){
+    deque.addLast(new Coor(startx, starty,1));
+    while(!deque.isEmpty()){
+      if(animate){
+        System.out.println(this.toString(true));
+        wait(20);
+      }
+      Coor c = new Coor(0,0,2);
+      if(mode == BFS){
+         c = deque.removeFirst();
+      }else if(mode == DFS){
+        c = deque.removeLast();
+      }else if(mode == BEST || mode == ASTAR){
+        c = deque.remove();
+      }
+      int a = c.get1();
+      int b = c.get2();
+      int[][] set = {
+        {a,b-1},
+        {a,b+1},
+        {a-1,b},
+        {a+1,b}
+      };
+      for(int[] neigh : set){
+        if(maze[neigh[0]][neigh[1]] == 'E'){
+          maze[a][b] = 'x';
+          para[a][b] = c.getCount();
+          para[neigh[0]][neigh[1]] = c.getCount() + 1;
+          aha(neigh[0],neigh[1],c.getCount()+1);
+          sweep();
+          return true;
+        }if(maze[neigh[0]][neigh[1]] == ' '){
+          para[a][b] = c.getCount();
+          deque.addLast(new Coor(neigh[0],neigh[1],c.getCount() + 1));
+
+          maze[neigh[0]][neigh[1]] = 'x';
+        }
+      }
+
+    }
+    sweep();
+    return false;
+  }
+
   public boolean solveBFS(boolean animate){
     deque.addLast(new Coor(startx, starty,1));
     while(!deque.isEmpty()){
@@ -211,6 +259,10 @@ public class Maze{
 
     }
     return false;
+  }
+
+  public boolean solveBest(){
+
   }
 
   public boolean solveBFS(){
