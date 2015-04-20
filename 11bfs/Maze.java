@@ -117,7 +117,9 @@ public class Maze{
       };
       for(int[] neigh : set){
         if(para[neigh[0]][neigh[1]] == fin - 1){
-          maze[neigh[0]][neigh[1]] = '.';
+          if(maze[neigh[0]][neigh[1]] != 'S'){
+            maze[neigh[0]][neigh[1]] = '.';
+          }
           solution[count] = neigh[0];
           count--;
           solution[count] = neigh[1];

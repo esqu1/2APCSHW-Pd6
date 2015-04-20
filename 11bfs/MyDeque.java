@@ -143,27 +143,8 @@ public class MyDeque<T>{
   }
 
   public void add(T t, int priority){
-    /*if(isEmpty()){
-      list[0] = t;
-      ps[0] = priority;
-      return;
-    }
-    for(int i = head-1; i != tail+1%size; i++){
-      if(list[i] == null){
-        insert(t,i,priority);
-      }else if(priority > ps[i]){
-        insert(t, i, priority);
-      }
-      head--;
-      if(head < 0){
-        head += list.length;
-      }
-      tail = (tail + 1) % list.length;
-      return;
-    }*/
     resizeps();
     addFirst(t);
-
     ps[head] = priority;
   }
 
