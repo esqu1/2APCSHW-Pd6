@@ -156,7 +156,7 @@ public class Maze{
     deque = new MyDeque<Coor>(mode);
     if(mode == BFS || mode == DFS){
       deque.addLast(new Coor(startx, starty,1));
-    }else if(mode == BEST || mode == ASTAR){
+    }else{
       deque.add(new Coor(startx,starty,1), 0);
     }
     while(!deque.isEmpty()){

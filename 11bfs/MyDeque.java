@@ -168,6 +168,10 @@ public class MyDeque<T>{
   }
 
   public T remove(){
+    if(size == 1){
+      T thingy = removeFirst();
+      return thingy;
+    }
     int h = head;
     int t = tail;
     int loc = 0;
@@ -194,6 +198,8 @@ public class MyDeque<T>{
     m.add(6,5);
     System.out.println(Arrays.toString(m.list));
     System.out.println(Arrays.toString(m.ps));
+    System.out.println(m.remove());
+    /*
     m.add(3,4);
     System.out.println(Arrays.toString(m.list));
     System.out.println(Arrays.toString(m.ps));
@@ -226,7 +232,7 @@ public class MyDeque<T>{
     m.add(2,1);
     m.add(3,4);
     System.out.println(Arrays.toString(m.list));
-    System.out.println(Arrays.toString(m.ps));
+    System.out.println(Arrays.toString(m.ps));*/
 
 
   }
