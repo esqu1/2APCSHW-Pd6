@@ -67,8 +67,6 @@ public class Maze{
     return ("\033[" + x + ";" + y + "H");
   }
 
-
-
   public void wait(int millis){
     try {
       Thread.sleep(millis);
@@ -84,11 +82,7 @@ public class Maze{
         ans += "\n";
       }
       char c =  maze[i % maxx][i / maxx];
-      if(c == '#'){
-        ans += c;
-      }else{
-        ans += c;
-      }
+      ans += c;
     }
     ans += "\n\n\n";
 
@@ -97,7 +91,7 @@ public class Maze{
 
   public String toString(boolean animate){
     if(animate){
-      return clear + go(0,0) + toString() + "\n" + show;
+      return clear + hide + go(0,0) + toString() + "\n" + show;
     }else{
       return toString();
     }
