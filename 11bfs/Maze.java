@@ -207,87 +207,35 @@ public class Maze{
   }
 
   public boolean solveBFS(boolean animate){
-    deque.addLast(new Coor(startx, starty,1));
-    while(!deque.isEmpty()){
-      if(animate){
-        System.out.println(this.toString(true));
-        wait(20);
-      }
-      Coor c = deque.removeFirst();
-      int a = c.get1();
-      int b = c.get2();
-      int[][] set = {
-        {a,b-1},
-        {a,b+1},
-        {a-1,b},
-        {a+1,b}
-      };
-      for(int[] neigh : set){
-        if(maze[neigh[0]][neigh[1]] == 'E'){
-          maze[a][b] = 'x';
-          para[a][b] = c.getCount();
-          para[neigh[0]][neigh[1]] = c.getCount() + 1;
-          aha(neigh[0],neigh[1],c.getCount()+1);
-          sweep();
-          return true;
-        }if(maze[neigh[0]][neigh[1]] == ' '){
-          para[a][b] = c.getCount();
-          deque.addLast(new Coor(neigh[0],neigh[1],c.getCount() + 1));
-
-          maze[neigh[0]][neigh[1]] = 'x';
-        }
-      }
-
-    }
-    sweep();
-    return false;
+    return solve(BFS,animate);
   }
 
   public boolean solveDFS(boolean animate){
-    deque.addLast(new Coor(startx, starty,1));
-    while(!deque.isEmpty()){
-      if(animate){
-        System.out.println(this.toString(true));
-        wait(20);
-      }
-      Coor c = deque.removeLast();
-      int a = c.get1();
-      int b = c.get2();
-      int[][] set = {
-        {a,b-1},
-        {a,b+1},
-        {a-1,b},
-        {a+1,b}
-      };
-      for(int[] neigh : set){
-        if(maze[neigh[0]][neigh[1]] == 'E'){
-          maze[a][b] = 'x';
-          para[a][b] = c.getCount();
-          para[neigh[0]][neigh[1]] = c.getCount() + 1;
-          aha(neigh[0],neigh[1],c.getCount()+1);
-          sweep();
-          return true;
-        }if(maze[neigh[0]][neigh[1]] == ' '){
-          para[a][b] = c.getCount();
-          deque.addLast(new Coor(neigh[0],neigh[1],c.getCount() + 1));
-          maze[a][b] = 'x';
-        }
-      }
-
-    }
-    return false;
+    return solve(DFS,animate);
   }
 
-  public boolean solveBest(){
-    return false;
+  public boolean solveBest(boolean animate){
+    return solve(BEST,animate);
+  }
+
+  public boolean solveAStar(boolean animate){
+    return solve(ASTAR,animate);
   }
 
   public boolean solveBFS(){
-    return solveBFS(false);
+    return solve(BFS,false);
   }
 
   public boolean solveDFS(){
-    return solveDFS(false);
+    return solve(DFS,false);
+  }
+
+  public boolean solveBest(){
+    return solve(BEST,false);
+  }
+
+  public boolean solveAStar(){
+    return solve(ASTAR,false);
   }
 
   public int[] solutionCoordinates(){
