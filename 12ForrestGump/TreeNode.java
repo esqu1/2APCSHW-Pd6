@@ -5,6 +5,14 @@ public class TreeNode<E>{
   private TreeNode<E> left, right;
   private E value;
 
+  public TreeNode(){
+
+  }
+
+  public TreeNode(E e){
+    value = e;
+  }
+
   public void setLeft(TreeNode<E> groot){
     left = groot;
   }

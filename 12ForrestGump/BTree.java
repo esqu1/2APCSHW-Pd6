@@ -33,7 +33,7 @@ public class BTree<E> {
   Wrapper method for the recursive add()
   ====================*/
   public void add( E d ) {
-
+    add(root, new TreeNode<E>(d));
   }
 
   /*======== public void add() ==========
@@ -48,6 +48,14 @@ public class BTree<E> {
   added to randomly.
   ====================*/
   private void add( TreeNode<E> curr, TreeNode<E> bn ) {
+    if(curr.getLeft() == null){
+      curr.setLeft(bn);
+    }else if(curr.getRight() == null){
+      curr.setRight(bn);
+    }else{
+      add(curr.getLeft(),bn);
+    }
+
   }
 
   public void traverse( int mode) {
