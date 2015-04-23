@@ -154,8 +154,13 @@ public class BTree<E> {
 
   ====================*/
   private String getLevel( TreeNode<E> curr, int level, int currLevel ) {
+    if(curr == null){
+      return "";
+    }
     if(level == currLevel){
-      System.out.print(curr);
+      System.out.print(curr + " ");
+    }else{
+      return getLevel(curr.getLeft(),level,currLevel + 1) + getLevel(curr.getRight(),level,currLevel + 1);
     }
     return "";
   }
