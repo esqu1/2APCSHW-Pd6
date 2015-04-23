@@ -53,7 +53,12 @@ public class BTree<E> {
     }else if(curr.getRight() == null){
       curr.setRight(bn);
     }else{
-      add(curr.getLeft(),bn);
+      int y = (int)Math.random() * 2;
+      if(y == 0){
+        add(curr.getLeft(),bn);
+      }else{
+        add(curr.getRight(),bn);
+      }
     }
 
   }
@@ -149,6 +154,9 @@ public class BTree<E> {
 
   ====================*/
   private String getLevel( TreeNode<E> curr, int level, int currLevel ) {
+    if(level == currLevel){
+      System.out.print(curr);
+    }
     return "";
   }
 
@@ -166,9 +174,9 @@ public class BTree<E> {
   Note that you cannot tell exactly where 3, 4 and 5 lie.
   That is ok, but if you want a CHALLENGE, you can try to
   get the output to look nicer, something like this:
-  0
-  1      2
-  3  4   5
+       0
+    1     2
+      3  4 5
   ====================*/
   public String toString() {
     return "";
