@@ -130,6 +130,12 @@ public class BTree<E> {
   public int getHeight( TreeNode<E> curr ) {
     if(curr.getLeft() == null && curr.getRight() == null){
       return 1;
+    }else if(curr.getLeft() == null){
+      return 1 + getHeight(curr.getRight());
+    }else if(curr.getRight() == null){
+      return 1 + getHeight(curr.getLeft());
+    }else{
+      return Math.max(getHeight(curr.getRight()), getHeight(curr.getLeft()));
     }
     return -1;
   }
