@@ -33,6 +33,10 @@ public class BTree<E> {
   Wrapper method for the recursive add()
   ====================*/
   public void add( E d ) {
+    if(root == null){
+      root = new TreeNode<E>(d);
+      return;
+    }
     add(root, new TreeNode<E>(d));
   }
 
@@ -48,15 +52,13 @@ public class BTree<E> {
   added to randomly.
   ====================*/
   private void add( TreeNode<E> curr, TreeNode<E> bn ) {
-    if(curr == null){
-      curr = bn;
-    }
     if(curr.getLeft() == null){
       curr.setLeft(bn);
     }else if(curr.getRight() == null){
       curr.setRight(bn);
     }else{
-      int y = (int)Math.random() * 2;
+      Random r = new Random(123123);
+      int y = r.nextInt(2);
       if(y == 0){
         add(curr.getLeft(),bn);
       }else{
@@ -90,7 +92,6 @@ public class BTree<E> {
     preOrder(curr.getLeft());
     System.out.print(" ");
     preOrder(curr.getRight());
-    System.out.print(" ");
   }
 
 
@@ -109,7 +110,6 @@ public class BTree<E> {
     System.out.print(" ");
     System.out.print(curr.getValue() + " ");
     preOrder(curr.getRight());
-    System.out.print(" ");
   }
 
   /*======== public void postOrder() ==========
@@ -127,7 +127,7 @@ public class BTree<E> {
     System.out.print(" ");
     preOrder(curr.getRight());
     System.out.print(" ");
-    System.out.print(curr.getValue() + " ");
+    System.out.print(curr.getValue());
   }
 
   /*======== public int getHeight()) ==========
@@ -146,7 +146,7 @@ public class BTree<E> {
   ====================*/
   public int getHeight( TreeNode<E> curr ) {
     if(curr == null){
-      return;
+      return 0;
     }
     if(curr.getLeft() == null && curr.getRight() == null){
       return 1;
@@ -209,6 +209,7 @@ public class BTree<E> {
 
     for ( int i=0; i < 8; i++ )
     t.add( i );
+    System.out.println(t.root);
     System.out.println( "Pre-order: ");
     t.traverse( PRE_ORDER );
     System.out.println( "In-order: ");
