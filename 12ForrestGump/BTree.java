@@ -173,11 +173,11 @@ public class BTree<E> {
       return "";
     }
     if(level <= currLevel){
-      System.out.print(curr.getValue() + " ");
+      return curr.getValue() + " ";
     }else{
       return getLevel(curr.getLeft(),level,currLevel + 1) + getLevel(curr.getRight(),level,currLevel + 1);
     }
-    return "";
+    //return "";
   }
 
   /*======== public String toString()) ==========
