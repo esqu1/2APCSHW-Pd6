@@ -22,6 +22,10 @@ public class BTree<E> {
   public static final int POST_ORDER = 2;
   private TreeNode<E> root;
 
+  public String name(){
+    return "lin.brandon";
+  }
+  
   public BTree() {
     root = null;
   }
