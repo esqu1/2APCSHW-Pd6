@@ -199,7 +199,11 @@ public class BTree<E> {
       3  4 5
   ====================*/
   public String toString() {
-    return "";
+    String s = "";
+    for(int i = 0; i < getHeight(); i++){
+      s += getLevel(root,i,0) + "\n";
+    }
+    return s;
   }
 
 
@@ -217,7 +221,6 @@ public class BTree<E> {
     System.out.println( "Post-order: ");
     t.traverse( POST_ORDER );
     System.out.println( "Height: " + t.getHeight() );
-
     System.out.println( t );
   }
 }
