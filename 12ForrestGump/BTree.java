@@ -25,7 +25,7 @@ public class BTree<E> {
   public String name(){
     return "lin.brandon";
   }
-  
+
   public BTree() {
     root = null;
   }
@@ -94,7 +94,6 @@ public class BTree<E> {
     }
     System.out.print(curr.getValue() + " ");
     preOrder(curr.getLeft());
-    System.out.print(" ");
     preOrder(curr.getRight());
   }
 
@@ -111,7 +110,6 @@ public class BTree<E> {
       return;
     }
     preOrder(curr.getLeft());
-    System.out.print(" ");
     System.out.print(curr.getValue() + " ");
     preOrder(curr.getRight());
   }
@@ -128,10 +126,8 @@ public class BTree<E> {
       return;
     }
     preOrder(curr.getLeft());
-    System.out.print(" ");
     preOrder(curr.getRight());
-    System.out.print(" ");
-    System.out.print(curr.getValue());
+    System.out.print(curr.getValue() + " ");
   }
 
   /*======== public int getHeight()) ==========
