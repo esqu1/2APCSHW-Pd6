@@ -201,8 +201,7 @@ public class BTree<E> {
   public String toString() {
     String s = "";
     for(int i = 0; i < getHeight(); i++){
-      s += getLevel(root,i,0);
-      s += "\n";
+      s += getLevel(root,i,0) + "\n";
     }
     return s;
   }
