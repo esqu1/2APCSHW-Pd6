@@ -109,9 +109,9 @@ public class BTree<E> {
     if(curr == null){
       return;
     }
-    preOrder(curr.getLeft());
+    inOrder(curr.getLeft());
     System.out.print(curr.getValue() + " ");
-    preOrder(curr.getRight());
+    inOrder(curr.getRight());
   }
 
   /*======== public void postOrder() ==========
@@ -125,8 +125,8 @@ public class BTree<E> {
     if(curr == null){
       return;
     }
-    preOrder(curr.getLeft());
-    preOrder(curr.getRight());
+    postOrder(curr.getLeft());
+    postOrder(curr.getRight());
     System.out.print(curr.getValue() + " ");
   }
 
@@ -155,7 +155,7 @@ public class BTree<E> {
     }else if(curr.getRight() == null){
       return 1 + getHeight(curr.getLeft());
     }else{
-      return Math.max(getHeight(curr.getRight()), getHeight(curr.getLeft()));
+      return 1 + Math.max(getHeight(curr.getRight()), getHeight(curr.getLeft()));
     }
     //return -1;
   }
