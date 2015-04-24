@@ -172,8 +172,8 @@ public class BTree<E> {
     if(curr == null){
       return "";
     }
-    if(level == currLevel){
-      System.out.print(curr + " ");
+    if(level <= currLevel){
+      System.out.print(curr.getValue() + " ");
     }else{
       return getLevel(curr.getLeft(),level,currLevel + 1) + getLevel(curr.getRight(),level,currLevel + 1);
     }
@@ -201,7 +201,8 @@ public class BTree<E> {
   public String toString() {
     String s = "";
     for(int i = 0; i < getHeight(); i++){
-      s += getLevel(root,i,0) + "\n";
+      s += getLevel(root,i,0);
+      s += "\n";
     }
     return s;
   }
@@ -221,6 +222,7 @@ public class BTree<E> {
     System.out.println( "Post-order: ");
     t.traverse( POST_ORDER );
     System.out.println( "Height: " + t.getHeight() );
-    System.out.println( t );
+    System.out.println(t.getLevel(t.root,1,0));
+    System.out.println( "Tree: " + t.toString() );
   }
 }
