@@ -14,7 +14,6 @@ Stolen from DW.
 
 import java.io.*;
 import java.util.*;
-
 public class BTree<E> {
 
   public static final int PRE_ORDER = 0;
