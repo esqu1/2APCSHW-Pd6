@@ -1,39 +1,42 @@
+//
+//
+//Your binary search tree Node skeleton file:
+
+
 import java.io.*;
 import java.util.*;
 
-public class BSTreeNode<E extends Comparable>{
-  private BSTreeNode<E> left, right;
-  private E value;
+public class BSTreeNode<T extends Comparable> {
 
-  public BSTreeNode(){
+  private T data;
+  private BSTreeNode<T> left;
+  private BSTreeNode<T> right;
 
+  public BSTreeNode( T d ) {
+
+    data = d;
+    left = right = null;
   }
 
-  public BSTreeNode(E e){
-    value = e;
+  //accessors
+  public T getData() {
+    return data;
   }
-
-  public void setLeft(BSTreeNode<E> groot){
-    left = groot;
-  }
-
-  public void setRight(BSTreeNode<E> groot){
-    right = groot;
-  }
-
-  public void setValue(E e){
-    value = e;
-  }
-
-  public E getValue(){
-    return value;
-  }
-
-  public BSTreeNode<E> getLeft(){
+  public BSTreeNode<T> getLeft() {
     return left;
   }
-
-  public BSTreeNode<E> getRight(){
+  public BSTreeNode<T> getRight() {
     return right;
+  }
+
+  //mutators
+  public void setData( T d ) {
+    data = d;
+  }
+  public void setLeft( BSTreeNode<T> l ) {
+    left = l;
+  }
+  public void setRight( BSTreeNode<T> r ) {
+    right = r;
   }
 }

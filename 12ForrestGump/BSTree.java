@@ -38,6 +38,8 @@ public class BSTree <T extends Comparable> {
   private BSTreeNode<T> add(BSTreeNode<T> curr, BSTreeNode<T> t) {
     if(root == null){
       return t;
+    }else if(t.getValue().compareTo(curr.getValue()) > 0){
+      
     }
     return null;
   }
