@@ -44,7 +44,7 @@ public class BSTree <T extends Comparable> {
       curr.setLeft(add(curr.getLeft(),t));
     }else{
       curr.setRight(add(curr.getRight(),t));
-    }
+    } 
     return curr;
   }
 
