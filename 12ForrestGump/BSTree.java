@@ -79,7 +79,7 @@ public class BSTree <T extends Comparable> {
       return null;
     }else if(curr.getData().compareTo(c) > 0){
       curr.setLeft(remove(curr.getLeft(),c));
-    }else if(curr.getData().compareTo(c) > 0){
+    }else if(curr.getData().compareTo(c) < 0){
       curr.setRight(remove(curr.getRight(),c));
     }else{
       root.setData(goDeep(root.getRight()));
