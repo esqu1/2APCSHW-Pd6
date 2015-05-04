@@ -44,7 +44,7 @@ public class BSTree <T extends Comparable> {
       curr.setLeft(add(curr.getLeft(),t));
     }else{
       curr.setRight(add(curr.getRight(),t));
-    } 
+    }
     return curr;
   }
 
@@ -67,7 +67,16 @@ public class BSTree <T extends Comparable> {
   curr, if it exists.
   ====================*/
   private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
-    return null;
+    if(curr == null || (isLeaf(curr) && curr.getData().equals(c))){
+      return null;
+    }else if(curr.getData().compareTo(c) > 0){
+      curr.setLeft(remove(curr.getLeft(),c));
+    }else if(curr.getData().compareTo(c) > 0){
+      curr.setRight(remove(curr.getRight(),c));
+    }else{
+      
+    }
+    return curr;
   }
 
 
