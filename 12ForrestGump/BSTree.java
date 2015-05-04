@@ -59,8 +59,8 @@ public class BSTree <T extends Comparable> {
   }
 
   public T goDeep(BSTreeNode<T> curr){
-    if(curr == null || !(curr.getLeft() == null)){
-      return null;
+    if(curr == null || curr.getLeft() == null){
+      return curr.getData();
     }else{
       return goDeep(curr.getLeft());
     }
