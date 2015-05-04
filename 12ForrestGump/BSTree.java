@@ -58,6 +58,14 @@ public class BSTree <T extends Comparable> {
     root = remove( root, c );
   }
 
+  public T goDeep(BSTreeNode<T> curr){
+    if(curr == null || !(curr.getLeft() == null)){
+      return null;
+    }else{
+      return goDeep(curr.getLeft());
+    }
+  }
+
   /*======== public BSTreeNode<T> remove() ==========
   Inputs:   BSTreeNode<T> curr
   T c
@@ -74,7 +82,8 @@ public class BSTree <T extends Comparable> {
     }else if(curr.getData().compareTo(c) > 0){
       curr.setRight(remove(curr.getRight(),c));
     }else{
-      
+      root.setData(goDeep(root.getRight()));
+      root.setRight(remove(root.getRight(), root.getData()));
     }
     return curr;
   }
@@ -227,6 +236,8 @@ public class BSTree <T extends Comparable> {
     b.add("yo");
     //System.out.println(b);
     b.add("no");
+    System.out.println(b);
+    b.remove("yo");
     System.out.println(b);
   }
 
