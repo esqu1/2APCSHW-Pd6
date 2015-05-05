@@ -60,7 +60,7 @@ public class BSTree <T extends Comparable> {
 
   public BSTreeNode<T> goDeep(BSTreeNode<T> curr){
     if(curr == null){
-      return curr;
+      return null;
     }else if(curr.getLeft() != null){
       return goDeep(curr.getLeft());
     }else{
@@ -84,8 +84,14 @@ public class BSTree <T extends Comparable> {
     }else if(curr.getData().compareTo(c) < 0){
       curr.setRight(remove(curr.getRight(),c));
     }else{
-      curr.setData(goDeep(curr.getRight()).getData());
-      curr.setRight(remove(curr.getRight(), curr.getData()));
+      if(goDeep(curr.getRight()) != null){
+        curr.setData(goDeep(curr.getRight()).getData());
+        curr.setRight(remove(curr.getRight(), curr.getData()));
+      }else{
+        curr.setData(curr.getLeft().getData());
+        curr.setLeft(remove(curr.getLeft(),curr.getData()));
+      }
+
     }
     return curr;
   }
