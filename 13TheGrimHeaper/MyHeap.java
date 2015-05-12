@@ -10,6 +10,13 @@ public class MyHeap{
 	data = new int[2];
 	mode = MAXHEAP;
     }
+
+    public int compare(int a, int b){
+	// for MAXHEAP: returns 1 if a > b, 0 otherwise.
+	// for MINHEAP: returns 1 if a < b, 0 otherwise.
+	return mode == MAXHEAP ? (a > b ? 1 : 0) : (a < b ? 1 : 0);
+    }
+	
     
     public void resize(){
 	if(data[0] == data.length - 1){
@@ -17,13 +24,14 @@ public class MyHeap{
 	    for (int i = 0; i < data.length; i++) {
 		newdata[i] = data[i];
 	    }
-	}
 	data = newdata;
+	}
     }
 
     public void add(int value){
 	resize();
 	data[data[0] + 1] = value;
+	
     }
     
 }
