@@ -48,6 +48,10 @@ public class MyHeap{
 	}
     }
 
+    public int peek(){
+	return data[1];
+    }
+
     public int remove(){
 	int value = data[1];
 	data[1] = data[data[0]];
@@ -73,14 +77,10 @@ public class MyHeap{
     public static void main(String[] args) {
 	MyHeap h = new MyHeap();
 	System.out.println(Arrays.toString(h.data));
-
 	h.add(3);
 	System.out.println(Arrays.toString(h.data));
-
 	h.add(4);
 	System.out.println(Arrays.toString(h.data));
-
 	System.out.println(h.remove());
-
     }
 }
