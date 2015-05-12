@@ -52,6 +52,20 @@ public class MyHeap{
 	return data[1];
     }
 
+    public String toString(){
+	String s = "";
+	int power = 1;
+	for(int i = 1; i <= data[0]; i++){
+	    if((int)Math.pow(2,power) == i){
+		s += "\n";
+		power++;
+	    }
+	    s += data[i] + " ";
+	    
+	}
+	return s;
+    }
+
     public int remove(){
 	int value = data[1];
 	data[1] = data[data[0]];
@@ -77,10 +91,21 @@ public class MyHeap{
     public static void main(String[] args) {
 	MyHeap h = new MyHeap();
 	System.out.println(Arrays.toString(h.data));
+	h.add(1);
+	System.out.println(Arrays.toString(h.data));
+	h.add(2);
+	System.out.println(Arrays.toString(h.data));
+	System.out.println(h);
 	h.add(3);
-	System.out.println(Arrays.toString(h.data));
 	h.add(4);
+	h.add(5);
+	h.add(6);
+	h.add(7);
+	h.add(8);
+	h.add(9);
 	System.out.println(Arrays.toString(h.data));
+
+
 	System.out.println(h.remove());
     }
 }
