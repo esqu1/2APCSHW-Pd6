@@ -32,12 +32,12 @@ public class MyHeap{
     public void add(int value){
 	resize();
 	data[data[0] + 1] = value;
-	data[0] += 1;
 	addHelp(data[0] + 1);
+	data[0] += 1;
     }
 
     public void addHelp(int index){
-	if(compare(data[index / 2],data[index]) == 0){
+	if(index != 1 && compare(data[index / 2],data[index]) == 0){
 	    int temp = data[index / 2];
 	    data[index / 2] = data[index];
 	    data[index] = temp;
@@ -66,5 +66,12 @@ public class MyHeap{
 	    removeHelp(index * 2 + 1);
 	}
     }
-    
+
+    public static void main(String[] args) {
+	MyHeap h = new MyHeap();
+	h.add(3);
+	h.add(4);
+	System.out.println(h.remove());
+
+    }
 }
