@@ -32,6 +32,7 @@ public class MyHeap{
     public void add(int value){
 	resize();
 	data[data[0] + 1] = value;
+	data[0] += 1;
 	addHelp(data[0] + 1);
     }
 
@@ -46,6 +47,24 @@ public class MyHeap{
 
     public int remove(){
 	int value = data[1];
+	data[1] = data[data[0]];
+	data[0] -= 1;
+	removeHelp(1);
+	return value;
+    }
+
+    public void removeHelp(int index){
+	if(compare(data[index],data[index * 2]) == 0){
+	    int temp = data[index];
+	    data[index] = data[index * 2];
+	    data[index * 2] = temp;
+	    removeHelp(index * 2);
+	}else if(compare(data[index],data[index * 2 + 1]) == 0){
+	    int temp = data[index];
+	    data[index] = data[index * 2 + 1];
+	    data[index * 2 + 1] = temp;
+	    removeHelp(index * 2 + 1);
+	}
     }
     
 }
