@@ -2,20 +2,23 @@ import java.util.*;
 import java.io.*;
 public class MyHeap{
     private int[] data;
-    private int mode;
-    private final int MAXHEAP = 0;
-    private final int MINHEAP = 1;
-
+    private boolean mode;
+    
     public MyHeap(){
 	data = new int[2];
-	mode = MAXHEAP;
+	mode = true;
+    }
+
+    public MyHeap(boolean isMax){
+	data = new int[2];
+	mode = isMax;
     }
 
     public int compare(int a, int b){
 	// for MAXHEAP: returns 1 if a > b, 0 otherwise.
 	// for MINHEAP: returns 1 if a < b, 0 otherwise.
 	// convention: compare(parent, child)
-	return mode == MAXHEAP ? (a > b ? 1 : 0) : (a < b ? 1 : 0);
+	return mode ? (a > b ? 1 : 0) : (a < b ? 1 : 0);
     }
 	
     
@@ -54,12 +57,12 @@ public class MyHeap{
     }
 
     public void removeHelp(int index){
-	if(compare(data[index],data[index * 2]) == 0){
+	if(index / 2 < data[0] && compare(data[index],data[index * 2]) == 0){
 	    int temp = data[index];
 	    data[index] = data[index * 2];
 	    data[index * 2] = temp;
 	    removeHelp(index * 2);
-	}else if(compare(data[index],data[index * 2 + 1]) == 0){
+	}else if(index / 2 < data[0] && compare(data[index],data[index * 2 + 1]) == 0){
 	    int temp = data[index];
 	    data[index] = data[index * 2 + 1];
 	    data[index * 2 + 1] = temp;
@@ -69,8 +72,14 @@ public class MyHeap{
 
     public static void main(String[] args) {
 	MyHeap h = new MyHeap();
+	System.out.println(Arrays.toString(h.data));
+
 	h.add(3);
+	System.out.println(Arrays.toString(h.data));
+
 	h.add(4);
+	System.out.println(Arrays.toString(h.data));
+
 	System.out.println(h.remove());
 
     }
