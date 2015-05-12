@@ -37,6 +37,8 @@ public class MyHeap{
 	data[data[0] + 1] = value;
 	addHelp(data[0] + 1);
 	data[0] += 1;
+	System.out.println(Arrays.toString(data));
+
     }
 
     public void addHelp(int index){
@@ -75,12 +77,15 @@ public class MyHeap{
     }
 
     public void removeHelp(int index){
-	if(index / 2 < data[0] && compare(data[index],data[index * 2]) == 0){
+	if(index < data[0] && compare(data[index],data[index * 2]) == 0){
+	    System.out.println("left");
+
 	    int temp = data[index];
 	    data[index] = data[index * 2];
 	    data[index * 2] = temp;
 	    removeHelp(index * 2);
-	}else if(index / 2 < data[0] && compare(data[index],data[index * 2 + 1]) == 0){
+	}else if(index < data[0] && compare(data[index],data[index * 2 + 1]) == 0){
+	    System.out.println("right");
 	    int temp = data[index];
 	    data[index] = data[index * 2 + 1];
 	    data[index * 2 + 1] = temp;
@@ -90,12 +95,8 @@ public class MyHeap{
 
     public static void main(String[] args) {
 	MyHeap h = new MyHeap();
-	System.out.println(Arrays.toString(h.data));
 	h.add(1);
-	System.out.println(Arrays.toString(h.data));
 	h.add(2);
-	System.out.println(Arrays.toString(h.data));
-	System.out.println(h);
 	h.add(3);
 	h.add(4);
 	h.add(5);
@@ -107,5 +108,7 @@ public class MyHeap{
 
 
 	System.out.println(h.remove());
+	System.out.println(h);
+
     }
 }
