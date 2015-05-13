@@ -70,6 +70,8 @@ public class MyHeap{
 	int value = data[1];
 	data[1] = data[data[0]];
 	data[0] -= 1;
+	System.out.println("hahahahaha" + data[1]);
+
 	removeHelp(1);
 	return value;
     }
@@ -89,6 +91,7 @@ public class MyHeap{
 	    data[index * 2 + 1] = temp;
 	    removeHelp(index * 2 + 1);
 	}
+	
     }
 
     public static void main(String[] args) {
@@ -120,7 +123,7 @@ public class MyHeap{
 	System.out.println("The Heap:\n" + h);
 	System.out.println("The Array:\n" + Arrays.toString(h.data));
 
-
+	/*
 	System.out.println(h.remove());
 	System.out.println(h.remove());
 	System.out.println(h.remove());
