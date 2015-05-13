@@ -37,8 +37,6 @@ public class MyHeap{
 	data[data[0] + 1] = value;
 	addHelp(data[0] + 1);
 	data[0] += 1;
-	System.out.println(Arrays.toString(data));
-
     }
 
     public void addHelp(int index){
@@ -77,14 +75,14 @@ public class MyHeap{
     }
 
     public void removeHelp(int index){
-	if(index < data[0] && compare(data[index],data[index * 2]) == 0){
+	if(index < data[0] && compare(data[index],data[index * 2]) == 0 && compare(data[index*2],data[index*2 + 1]) == 1){
 	    System.out.println("left");
 
 	    int temp = data[index];
 	    data[index] = data[index * 2];
 	    data[index * 2] = temp;
 	    removeHelp(index * 2);
-	}else if(index < data[0] && compare(data[index],data[index * 2 + 1]) == 0){
+	}else if(index < data[0] && compare(data[index],data[index * 2 + 1]) == 0 && compare(data[index*2],data[index*2 + 1]) == 0){
 	    System.out.println("right");
 	    int temp = data[index];
 	    data[index] = data[index * 2 + 1];
@@ -105,10 +103,33 @@ public class MyHeap{
 	h.add(8);
 	h.add(9);
 	System.out.println(Arrays.toString(h.data));
+	System.out.println(h);
+
+	System.out.println(h.remove());
+	System.out.println("The Heap:\n" + h);
+	System.out.println("The Array:\n" + Arrays.toString(h.data));
+	
+	
+	System.out.println(h.remove());
+	System.out.println("The Heap:\n" + h);
+	System.out.println("The Array:\n" + Arrays.toString(h.data));
+	System.out.println(h.remove());
+	System.out.println("The Heap:\n" + h);
+	System.out.println("The Array:\n" + Arrays.toString(h.data));
+	System.out.println(h.remove());
+	System.out.println("The Heap:\n" + h);
+	System.out.println("The Array:\n" + Arrays.toString(h.data));
 
 
 	System.out.println(h.remove());
-	System.out.println(h);
+	System.out.println(h.remove());
+	System.out.println(h.remove());
+	System.out.println(h.remove());
+	System.out.println(h.remove());*/
+	
+
+
+	
 
     }
 }
