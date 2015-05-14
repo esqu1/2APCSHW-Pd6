@@ -9,6 +9,10 @@ public class MyHeap{
 	mode = true;
     }
 
+    public int getSize(){
+	return data[0];
+    }
+
     public MyHeap(boolean isMax){
 	data = new int[2];
 	mode = isMax;

@@ -25,10 +25,10 @@ public class RunningMedian{
 	    }
 	    oneValueOrNah = false;
 	}else{
-	    if(value > h2.peek()){
+	    if(h2.getSize() > 0 && value > h2.peek()){
 		median = h2.remove();
 		h2.add(value);
-	    }else if(value < h1.peek()){
+	    }else if(h1.getSize() > 0 && value < h1.peek()){
 		median = h1.remove();
 		h1.add(value);
 	    }else{
@@ -36,5 +36,19 @@ public class RunningMedian{
 	    }
 	    oneValueOrNah = true;
 	}
+    }
+
+    public static void main(String[] args) {
+	RunningMedian r = new RunningMedian();
+	r.add(5);
+	r.add(6);
+	r.add(7);
+	r.add(4);
+	r.add(3);
+	r.add(2);
+	r.add(8);
+	r.add(1);
+	System.out.println(r.getMedian());
+
     }
 }
