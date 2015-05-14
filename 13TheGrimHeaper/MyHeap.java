@@ -49,6 +49,9 @@ public class MyHeap{
     }
 
     public int peek(){
+	if(data[0] == 0){
+	    throw new NoSuchElementException();
+	}
 	return data[1];
     }
 
@@ -67,24 +70,28 @@ public class MyHeap{
     }
 
     public int remove(){
+	if(data[0] == 0){
+	    throw new NoSuchElementException();
+	}
 	int value = data[1];
 	data[1] = data[data[0]];
 	data[0] -= 1;
-	System.out.println("hahahahaha" + data[1]);
+	//System.out.println("hahahahaha" + data[1]);
 
 	removeHelp(1);
 	return value;
     }
 
     public void removeHelp(int index){
-	System.out.println("YESSSSSSS" + index);
+	//System.out.println("YESSSSSSS" + index);
 
-	if(index >= Math.pow(2,Math.floor(Math.log10(data[0]) / Math.log10(2)))){
+	//if(index >= Math.pow(2,Math.floor(Math.log10(data[0]) / Math.log10(2)))){
+	if(index * 2 + 1 > data[0] || index * 2 > data[0]){
 	    return;
 	}
 	if(index < data[0] && compare(data[index],data[index * 2]) == 0 && compare(data[index*2],data[index*2 + 1]) == 1){
-	    System.out.println("left");
-	    System.out.println(this);
+	    //System.out.println("left");
+	    //System.out.println(this);
 
 
 	    int temp = data[index];
@@ -92,13 +99,13 @@ public class MyHeap{
 	    data[index * 2] = temp;
 	    removeHelp(index * 2);
 	}else if(index < data[0] && compare(data[index],data[index * 2 + 1]) == 0 && compare(data[index*2],data[index*2 + 1]) == 0){
-	    System.out.println("right");
-	    System.out.println(this);
+	    //System.out.println("right");
+	    //System.out.println(this);
 	    
 
 	    int temp = data[index];
-	    System.out.println("nononono" + temp);
-	    System.out.println("yesyseyseys" + data[index*2 + 1]);
+	    //System.out.println("nononono" + temp);
+	    //System.out.println("yesyseyseys" + data[index*2 + 1]);
 
 	    data[index] = data[index * 2 + 1];
 	    data[index * 2 + 1] = temp;
@@ -142,6 +149,13 @@ public class MyHeap{
 	System.out.println(h.remove());
 	System.out.println(h.remove());
 	System.out.println(h.remove());*/
+	for (int i = 0; i < 10; i++) {
+	    System.out.println(h.remove());
+	}
+	System.out.println(h);
+
+	
+
 	
 
 
