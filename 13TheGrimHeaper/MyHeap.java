@@ -77,8 +77,15 @@ public class MyHeap{
     }
 
     public void removeHelp(int index){
+	System.out.println("YESSSSSSS" + index);
+
+	if(index >= Math.pow(2,Math.floor(Math.log10(data[0]) / Math.log10(2)))){
+	    return;
+	}
 	if(index < data[0] && compare(data[index],data[index * 2]) == 0 && compare(data[index*2],data[index*2 + 1]) == 1){
 	    System.out.println("left");
+	    System.out.println(this);
+
 
 	    int temp = data[index];
 	    data[index] = data[index * 2];
@@ -86,7 +93,13 @@ public class MyHeap{
 	    removeHelp(index * 2);
 	}else if(index < data[0] && compare(data[index],data[index * 2 + 1]) == 0 && compare(data[index*2],data[index*2 + 1]) == 0){
 	    System.out.println("right");
+	    System.out.println(this);
+	    
+
 	    int temp = data[index];
+	    System.out.println("nononono" + temp);
+	    System.out.println("yesyseyseys" + data[index*2 + 1]);
+
 	    data[index] = data[index * 2 + 1];
 	    data[index * 2 + 1] = temp;
 	    removeHelp(index * 2 + 1);
@@ -105,23 +118,23 @@ public class MyHeap{
 	h.add(7);
 	h.add(8);
 	h.add(9);
-	System.out.println(Arrays.toString(h.data));
-	System.out.println(h);
+	//System.out.println(Arrays.toString(h.data));
+	//System.out.println(h);
 
-	System.out.println(h.remove());
-	System.out.println("The Heap:\n" + h);
-	System.out.println("The Array:\n" + Arrays.toString(h.data));
+	//System.out.println(h.remove());
+	//System.out.println("The Heap:\n" + h);
+	//System.out.println("The Array:\n" + Arrays.toString(h.data));
 	
 	
-	System.out.println(h.remove());
-	System.out.println("The Heap:\n" + h);
-	System.out.println("The Array:\n" + Arrays.toString(h.data));
-	System.out.println(h.remove());
-	System.out.println("The Heap:\n" + h);
-	System.out.println("The Array:\n" + Arrays.toString(h.data));
-	System.out.println(h.remove());
-	System.out.println("The Heap:\n" + h);
-	System.out.println("The Array:\n" + Arrays.toString(h.data));
+	//System.out.println(h.remove());
+	//System.out.println("The Heap:\n" + h);
+	//System.out.println("The Array:\n" + Arrays.toString(h.data));
+	//System.out.println(h.remove());
+	//System.out.println("The Heap:\n" + h);
+	//System.out.println("The Array:\n" + Arrays.toString(h.data));
+	//System.out.println(h.remove());
+	//System.out.println("The Heap:\n" + h);
+	//System.out.println("The Array:\n" + Arrays.toString(h.data));
 
 	/*
 	System.out.println(h.remove());
