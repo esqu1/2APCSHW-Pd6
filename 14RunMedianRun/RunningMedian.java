@@ -48,6 +48,7 @@ public class RunningMedian{
 	r.add(2);
 	r.add(8);
 	r.add(1);
+	r.add(9);
 	System.out.println(r.getMedian());
 
     }
