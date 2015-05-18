@@ -31,6 +31,8 @@ public class Sorts{
 	for(int i = mark; i >= 0; i++){
 	    swapHelp(i,L);
 	}
+	System.out.println(Arrays.toString(L));
+
 	
 	
     }
