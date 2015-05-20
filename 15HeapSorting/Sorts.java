@@ -22,13 +22,15 @@ public class Sorts{
     
     public static void heap(int[] L){
 	int mark = 0;
-	for(int i = L.length; i >= 0; i++){
+	for(int i = L.length; i >= 0; i--){
 	    if(2*i + 1 < L.length || 2*i + 2 < L.length){ // checks for first node with child from the last
 		mark = i;
 		break;
 	    }
 	}
-	for(int i = mark; i >= 0; i++){
+	System.out.println(mark);
+
+	for(int i = mark; i >= 0; i--){
 	    swapHelp(i,L);
 	}
 	System.out.println(Arrays.toString(L));
@@ -38,6 +40,9 @@ public class Sorts{
     }
 
     public static void main(String[] args) {
-	
+	int[] L = {6,2,5,8,1,4,7,9};
+	heap(L);
+	System.out.println(Arrays.toString(L));
+
     }
 }
