@@ -2,24 +2,25 @@ import java.util.*;
 public class Sorts{
     
     // Stolen from my MyHeap code (the removeHelp function)
-    public static void swapHelp(int index, int[] data){
-	if(index * 2 + 1 >= data.length){ //check if it has a child
+    // max is inclusive
+    public static void swapHelp(int index, int[] data, int max){
+	if(index * 2 + 1 >= max){ //check if it has a child
 	    return;
 	}
-	if((data[index] <= data[index * 2 + 1]) && ((index*2 + 2 >= data.length) || (index * 2 + 1 < data.length &&  && data[index*2 + 1] >= data[index*2 + 2]))){
+	if((data[index] <= data[index * 2 + 1]) && ((index*2 + 2 >= max) || data[index*2 + 1] >= data[index*2 + 2])){
 	    int temp = data[index];
 	    data[index] = data[index * 2 + 1];
 	    data[index * 2 + 1] = temp;
 	    System.out.println(Arrays.toString(data));
 
-	    swapHelp(index * 2 + 1,data);
-	}else if(index * 2 + 2 < data.length && data[index] <= data[index * 2 + 2] && data[index*2 + 1] <= data[index*2 + 2]){
+	    swapHelp(index * 2 + 1,data, max);
+	}else if(index * 2 + 2 < max && data[index] <= data[index * 2 + 2] && data[index*2 + 1] <= data[index*2 + 2]){
 	    int temp = data[index];
 	    data[index] = data[index * 2 + 2];
 	    data[index * 2 + 2] = temp;
 	    System.out.println(Arrays.toString(data));
 
-	    swapHelp(index * 2 + 2,data);
+	    swapHelp(index * 2 + 2,data,max);
 	}
 	
     }
@@ -35,12 +36,23 @@ public class Sorts{
 	System.out.println(mark);
 
 	for(int i = mark; i >= 0; i--){
-	    swapHelp(i,L);
+	    swapHelp(i,L, L.length - 1);
 	}
-	System.out.println(Arrays.toString(L));
+	System.out.println(Arrays.toString(L) + "\n\n");
+	sorting(L);
+	System.out.println(Arrays.toString(L) );
 
+    }
+
+    public static void sorting(int[] L){
 	
-	
+	for (int counter = L.length; counter > 0; counter--) {
+	    int temp = L[0];
+	    L[0] = L[counter-1];
+	    L[counter-1] = temp;
+	    swapHelp(0,L,counter);
+	}
+	   
     }
 
     public static void main(String[] args) {
