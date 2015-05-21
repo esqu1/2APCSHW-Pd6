@@ -3,18 +3,22 @@ public class Sorts{
     
     // Stolen from my MyHeap code (the removeHelp function)
     public static void swapHelp(int index, int[] data){
-	if(index * 2 + 1 > data.length || index * 2 + 2 > data.length){
+	if(index * 2 + 1 >= data.length){ //check if it has a child
 	    return;
 	}
-	if(index < data[0] && data[index] <= data[index * 2 + 1] && data[index*2 + 1] >= data[index*2 + 2]){
+	if((data[index] <= data[index * 2 + 1]) && ((index*2 + 2 >= data.length) || (index * 2 + 1 < data.length &&  && data[index*2 + 1] >= data[index*2 + 2]))){
 	    int temp = data[index];
 	    data[index] = data[index * 2 + 1];
 	    data[index * 2 + 1] = temp;
+	    System.out.println(Arrays.toString(data));
+
 	    swapHelp(index * 2 + 1,data);
-	}else if(index < data[0] && data[index] <= data[index * 2 + 2] && data[index*2 + 1] <= data[index*2 + 2]){
+	}else if(index * 2 + 2 < data.length && data[index] <= data[index * 2 + 2] && data[index*2 + 1] <= data[index*2 + 2]){
 	    int temp = data[index];
 	    data[index] = data[index * 2 + 2];
 	    data[index * 2 + 2] = temp;
+	    System.out.println(Arrays.toString(data));
+
 	    swapHelp(index * 2 + 2,data);
 	}
 	
