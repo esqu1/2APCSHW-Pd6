@@ -2,7 +2,7 @@ import java.util.*;
 public class Sorts{
     
     // Stolen from my MyHeap code (the removeHelp function)
-    // max is inclusive
+    // max is exclusive
     public static void swapHelp(int index, int[] data, int max){
 	if(index * 2 + 1 >= max){ //check if it has a child
 	    return;
@@ -36,7 +36,7 @@ public class Sorts{
 	System.out.println(mark);
 
 	for(int i = mark; i >= 0; i--){
-	    swapHelp(i,L, L.length - 1);
+	    swapHelp(i,L, L.length);
 	}
 	System.out.println(Arrays.toString(L) + "\n\n");
 	sorting(L);
@@ -46,10 +46,10 @@ public class Sorts{
 
     public static void sorting(int[] L){
 	
-	for (int counter = L.length; counter > 0; counter--) {
+	for (int counter = L.length-1; counter > 0; counter--) {
 	    int temp = L[0];
-	    L[0] = L[counter-1];
-	    L[counter-1] = temp;
+	    L[0] = L[counter];
+	    L[counter] = temp;
 	    swapHelp(0,L,counter);
 	}
 	   
